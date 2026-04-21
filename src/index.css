@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;600;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-pink-accent: #fb7185;
+  --color-magenta-accent: #d946ef;
+  --color-blue-accent: #6366f1;
+  --color-glow-magenta: rgba(217, 70, 239, 0.4);
+  --color-bg-dark: #070813;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg-dark text-white font-sans antialiased selection:bg-fuchsia-500/30 selection:text-white;
+  }
+  
+  /* Scrollbar Customization */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--color-pink-accent), var(--color-magenta-accent));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-magenta-accent);
+  }
+}
+
+@layer utilities {
+  .text-neon {
+    text-shadow: 0 0 10px var(--color-glow-magenta), 0 0 20px var(--color-glow-magenta);
+  }
+  .border-neon {
+    box-shadow: 0 0 15px var(--color-glow-magenta);
+  }
+  .bg-primary-gradient {
+    background: linear-gradient(to right, var(--color-pink-accent), var(--color-magenta-accent), var(--color-blue-accent));
+  }
+  .text-gradient {
+    background: linear-gradient(to right, var(--color-pink-accent), var(--color-magenta-accent), var(--color-blue-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .bg-glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
