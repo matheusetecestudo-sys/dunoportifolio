@@ -290,7 +290,6 @@ export default function App() {
 function DunoNexusApp() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openFaqs, setOpenFaqs] = useState<number[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -300,11 +299,6 @@ function DunoNexusApp() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const filteredFaqs = FAQS.filter(faq => 
-    faq.q.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    faq.a.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   // Parallax Scroll for Hero
   const heroRef = useRef(null);
@@ -517,14 +511,15 @@ function DunoNexusApp() {
           className="absolute inset-0 -z-20 overflow-hidden"
         >
           <img 
-            src="https://picsum.photos/seed/cyber-business/1200/800?blur=5" 
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
             alt="Hero Background" 
             loading="eager"
             decoding="sync"
-            className="w-full h-full object-cover opacity-[0.08]"
+            className="w-full h-full object-cover opacity-20 scale-110"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-transparent to-bg-dark" />
+          <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-bg-dark/40 to-bg-dark" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(217,70,239,0.1),transparent_50%)]" />
         </motion.div>
 
         <motion.div 
@@ -532,56 +527,79 @@ function DunoNexusApp() {
           className="container mx-auto text-center relative z-10"
         >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-primary-gradient/10 border border-fuchsia-100/10 rounded-full mb-10 shadow-[0_0_20px_rgba(217,70,239,0.1)]"
-          >
-            <div className="w-2 h-2 rounded-full bg-primary-gradient animate-pulse shadow-[0_0_10px_#fb7185]" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-white/80 font-bold">
-              ESTRATÉGIA DIGITAL • ALTA PERFORMANCE
-            </span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-6xl md:text-[8rem] lg:text-[10rem] font-display font-black leading-[0.8] tracking-tighter mb-8"
-          >
-            <span className="text-gradient">DESIGN</span> <br />
-            <span className="text-white drop-shadow-2xl">QUE VENDE</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed"
-          >
-            Sites desenhados para <span className="text-white font-medium">multiplicar seu faturamento</span>. 
-            Não entregamos apenas páginas, construímos máquinas de venda direta para seu WhatsApp.
-          </motion.p>
-          
-          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-8"
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center justify-center"
           >
-            <a 
-              href="#projetos"
-              className="bg-primary-gradient px-12 py-7 rounded-3xl font-black text-sm uppercase tracking-[0.25em] shadow-[0_20px_50px_rgba(217,70,239,0.3)] hover:scale-105 active:scale-95 transition-all w-full md:w-auto"
+            {/* Top Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="inline-flex items-center gap-3 px-6 py-2 bg-white/5 border border-white/10 rounded-full mb-12 backdrop-blur-md shadow-[0_0_40px_rgba(217,70,239,0.1)] group hover:border-fuchsia-500/50 transition-all duration-500"
             >
-              Ver Portfólio
-            </a>
-            <div className="flex flex-col items-center md:items-start gap-1">
-              <div className="flex items-center gap-2 text-white/80 font-bold">
-                 <ShieldCheck className="text-gradient" size={18} />
-                 Cancelamento Livre
+              <div className="flex -space-x-2">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="w-6 h-6 rounded-full border-2 border-[#05060f] bg-zinc-800 overflow-hidden shadow-xl">
+                    <img src={`https://i.pravatar.cc/100?u=${i + 20}`} alt="User" />
+                  </div>
+                ))}
               </div>
-              <span className="text-[10px] text-white/40 uppercase tracking-widest font-mono">Pague pelo resultado • Sem fidelidade</span>
-            </div>
+              <div className="w-1.5 h-1.5 rounded-full bg-fuchsia-500 animate-pulse" />
+              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-white/50 font-black group-hover:text-white transition-colors">
+                +250 PROJETOS ENTREGUES
+              </span>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              className="text-7xl md:text-[9rem] lg:text-[11rem] font-display font-black leading-[0.75] tracking-tighter mb-10 relative"
+            >
+              <span className="absolute -inset-x-20 top-1/2 -translate-y-1/2 h-32 bg-fuchsia-500/10 blur-[120px] -z-10 animate-pulse" />
+              <span className="text-gradient">DESIGN</span> <br />
+              <span className="text-white drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">QUE VENDE</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="text-white/60 text-lg md:text-2xl max-w-3xl mx-auto mb-14 font-light leading-relaxed"
+            >
+              Criamos ecossistemas digitais de <span className="text-white font-medium border-b-2 border-fuchsia-500/30">alta conversão</span>. 
+              Transforme visitantes em clientes fiéis com estratégias focadas em resultados brutais.
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="flex flex-col md:flex-row items-center justify-center gap-10"
+            >
+              <a 
+                href="#projetos"
+                className="group relative"
+              >
+                <div className="absolute -inset-1 bg-primary-gradient rounded-3xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+                <div className="relative bg-[#05060f] px-14 py-8 rounded-3xl font-black text-sm uppercase tracking-[0.3em] border border-white/10 flex items-center gap-4 group-hover:border-white/20 transition-all">
+                  Explorar Projetos
+                  <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
+              </a>
+
+              <div className="flex flex-col items-center md:items-start gap-2">
+                <div className="flex items-center gap-3">
+                   <div className="flex gap-0.5">
+                      {[...Array(5)].map((_, i) => <Sparkles key={i} size={12} className="text-fuchsia-400 fill-current" />)}
+                   </div>
+                   <span className="text-white font-bold text-sm tracking-tight">Avaliações 5 Estrelas</span>
+                </div>
+                <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-mono">Feedback real de grandes marcas</span>
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
 
@@ -636,7 +654,7 @@ function DunoNexusApp() {
       >
         <motion.div variants={fadeInUp} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 tracking-tight uppercase">SITES QUE <span className="text-gradient italic pr-2">CONVERTEM</span></h2>
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase leading-tight">SITES QUE <span className="text-gradient italic pr-2">CONVERTEM</span></h2>
             <p className="text-white/40 max-w-md font-light">Não apenas código. Estratégias visuais focadas em resultados reais de faturamento.</p>
           </div>
           <motion.div 
@@ -667,8 +685,8 @@ function DunoNexusApp() {
         className="py-20 bg-white/2 relative"
       >
         <div className="container mx-auto px-6">
-           <motion.div variants={fadeInUp} className="text-center mb-12">
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase">O MODELO <span className="text-gradient italic pr-2">PAGO POR RESULTADO</span></h2>
+           <motion.div variants={fadeInUp} className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase leading-tight">O MODELO <span className="text-gradient italic pr-2">PAGO POR RESULTADO</span></h2>
             <p className="text-white/40 max-w-2xl mx-auto font-light leading-relaxed">
               Por que gastar milhares comprando um site que ficará obsoleto amanhã? 
               A DUNO oferece um ecossistema vivo que evolui com seu ROI.
@@ -774,7 +792,7 @@ function DunoNexusApp() {
           </motion.div>
           <motion.div variants={slideInRight} className="order-1 lg:order-2">
             <span className="text-gradient font-mono text-sm tracking-[0.3em] uppercase mb-4 block">Diferenciação Brutal</span>
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 tracking-tight uppercase">SAIA DA <span className="text-white/30 italic pr-2">CONCORRÊNCIA</span></h2>
+            <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 tracking-tight uppercase leading-tight">SAIA DA <span className="text-gradient italic pr-2">CONCORRÊNCIA</span></h2>
             <div className="space-y-6 text-white/60 font-light leading-relaxed text-lg">
               <p>
                 Ter um site hoje não é mais um luxo, é sua vitrine principal. Mas ter um site **ruim** 
@@ -809,9 +827,9 @@ function DunoNexusApp() {
         variants={staggerContainer}
         className="py-20 container mx-auto px-6"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase">CONSTRUÇÃO DE <span className="text-gradient italic pr-2">VALOR</span></h2>
-          <p className="text-white/40 max-w-2xl mx-auto font-light">Nossa metodologia é focada em ROI (Retorno sobre Investimento) imediato.</p>
+        <motion.div variants={fadeInUp} className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase leading-tight">CONSTRUÇÃO DE <span className="text-gradient italic pr-2">VALOR</span></h2>
+          <p className="text-white/40 max-w-2xl mx-auto font-light leading-relaxed">Nossa metodologia é focada em ROI (Retorno sobre Investimento) imediato.</p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {PROCESS.map((p, i) => (
@@ -837,8 +855,8 @@ function DunoNexusApp() {
         className="py-20 bg-white/2"
       >
         <div className="container mx-auto px-6">
-           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight uppercase">QUEM <span className="text-gradient italic pr-2">INVESTIU</span> E LUCROU</h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight uppercase leading-tight">QUEM <span className="text-gradient italic pr-2">INVESTIU</span> E LUCROU</h2>
           </div>
           <motion.div variants={staggerContainer} className="flex items-center gap-6 overflow-x-auto pb-4 no-scrollbar">
             {TESTIMONIALS.map((t, i) => (
@@ -881,9 +899,9 @@ function DunoNexusApp() {
         variants={staggerContainer}
         className="py-20 container mx-auto px-6"
       >
-        <motion.div variants={fadeInUp} className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase">PLANOS DE <span className="text-gradient italic pr-2">INVESTIMENTO</span></h2>
-          <p className="text-white/40 max-w-2xl mx-auto font-light">Escolha a escala de crescimento que seu negócio exige agora.</p>
+        <motion.div variants={fadeInUp} className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight uppercase leading-tight">PLANOS DE <span className="text-gradient italic pr-2">INVESTIMENTO</span></h2>
+          <p className="text-white/40 max-w-2xl mx-auto font-light leading-relaxed">Escolha a escala de crescimento que seu negócio exige agora.</p>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -937,51 +955,11 @@ function DunoNexusApp() {
         variants={staggerContainer}
         className="py-20 container mx-auto px-6 max-w-4xl"
       >
-        <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-display font-bold text-center mb-10 tracking-tight uppercase">RESPOSTAS <span className="text-gradient italic pr-2">DIRETAS</span></motion.h2>
+        <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-display font-bold text-center mb-16 tracking-tight uppercase leading-tight">RESPOSTAS <span className="text-gradient italic pr-2">DIRETAS</span></motion.h2>
         
-        {/* Search Input and Bulk Actions */}
-        <motion.div variants={fadeInUp} className="flex flex-col gap-6 mb-12">
-          <div className="relative group">
-            <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none text-white/20 group-focus-within:text-fuchsia-500 transition-colors">
-              <Search size={20} />
-            </div>
-            <input 
-              type="text" 
-              placeholder="Dúvida sobre planos, prazos ou suporte?"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-6 pl-16 pr-6 text-white placeholder:text-white/20 focus:outline-none focus:border-fuchsia-500/50 focus:bg-white/10 transition-all font-light"
-            />
-            {searchTerm && (
-              <button 
-                onClick={() => setSearchTerm("")}
-                className="absolute inset-y-0 right-6 flex items-center text-white/20 hover:text-white transition-colors"
-              >
-                <X size={18} />
-              </button>
-            )}
-          </div>
-
-          <div className="flex justify-center md:justify-end gap-6 text-[10px] font-mono uppercase tracking-[0.2em] font-bold text-white/30">
-            <button 
-              onClick={() => setOpenFaqs(filteredFaqs.map((_, i) => i))}
-              className="hover:text-fuchsia-500 transition-colors flex items-center gap-2"
-            >
-              <Plus size={12} /> Expandir Tudo
-            </button>
-            <div className="w-px h-3 bg-white/10" />
-            <button 
-              onClick={() => setOpenFaqs([])}
-              className="hover:text-white transition-colors flex items-center gap-2"
-            >
-              <X size={12} /> Recolher Tudo
-            </button>
-          </div>
-        </motion.div>
-
         <motion.div variants={staggerContainer} className="space-y-4">
-          {filteredFaqs.length > 0 ? filteredFaqs.map((faq, i) => (
-            <motion.div key={i} variants={itemVariant} className="bg-glass rounded-2xl overflow-hidden group">
+          {FAQS.map((faq, i) => (
+            <motion.div key={i} variants={itemVariant} className="bg-glass rounded-2xl overflow-hidden group border border-white/5 hover:border-white/10 transition-colors">
               <button 
                 onClick={() => {
                   if (openFaqs.includes(i)) {
@@ -1015,19 +993,7 @@ function DunoNexusApp() {
                 )}
               </AnimatePresence>
             </motion.div>
-          )) : (
-            <div className="text-center py-20 bg-white/2 rounded-3xl border border-dashed border-white/10">
-              <p className="text-white/40 font-light italic">
-                Nenhum resultado encontrado para "{searchTerm}". <br />
-                <button 
-                  onClick={() => setSearchTerm("")}
-                  className="text-fuchsia-500 font-medium mt-4 hover:underline"
-                >
-                  Limpar busca
-                </button>
-              </p>
-            </div>
-          )}
+          ))}
         </motion.div>
       </motion.section>
 
@@ -1052,17 +1018,27 @@ function DunoNexusApp() {
             <div className="flex flex-col items-center justify-center gap-8">
               <motion.a 
                 href="https://wa.me/seunumerosaqui" 
-                whileHover={{ scale: 1.05, boxShadow: "0 0 100px rgba(217,70,239,0.3)" }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto relative group overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto relative group"
               >
-                <div className="absolute inset-0 bg-primary-gradient opacity-80 group-hover:opacity-100 transition-opacity" />
-                <div className="relative px-14 py-8 rounded-full flex items-center justify-center gap-6 text-white font-black text-2xl border border-white/20 whitespace-nowrap">
-                   QUERO MEU SITE AGORA
-                   <div className="relative">
-                      <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform relative z-10" />
-                      <div className="absolute inset-0 bg-white blur-xl opacity-20 scale-0 group-hover:scale-150 transition-transform duration-500" />
+                {/* Magnetic Border/Glow Effect */}
+                <div className="absolute -inset-1 bg-primary-gradient rounded-full blur-xl opacity-25 group-hover:opacity-75 transition-all duration-700 animate-pulse" />
+                
+                <div className="relative bg-[#05060f] px-16 py-8 rounded-full flex items-center justify-center gap-6 border border-white/10 overflow-hidden group">
+                   {/* Shimmer effect */}
+                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                   
+                   <span className="relative z-10 text-white font-black text-2xl tracking-tighter uppercase group-hover:text-white transition-colors">
+                      QUERO MEU SITE AGORA
+                   </span>
+                   
+                   <div className="relative z-10 p-2 bg-primary-gradient rounded-full shadow-[0_0_20px_rgba(217,70,239,0.5)] group-hover:shadow-[0_0_40px_rgba(217,70,239,0.8)] transition-all">
+                      <ArrowUpRight size={24} className="text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                    </div>
+                   
+                   {/* Refined background highlight */}
+                   <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-fuchsia-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </motion.a>
               

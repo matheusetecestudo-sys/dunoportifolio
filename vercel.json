@@ -1,6 +1,4 @@
 {
-  "name": "duno-nexus",
-  "description": "Estrategistas digitais focados em alta conversão.",
   "rewrites": [
     {
       "source": "/(.*)",
