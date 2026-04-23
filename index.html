@@ -71,7 +71,7 @@
         <div class="ann-close">✕</div>
     </div>
 
-    <!-- SEÇÃO 1 — NAVBAR -->
+    <!-- SEÇÃO 1 — NAVBAR (HEADER) -->
     <header class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
@@ -81,22 +81,19 @@
             
             <nav class="nav-links">
                 <a href="#portfolio">Projetos</a>
-                <a href="#planos">Planos</a>
+                <a href="#comparativo">Por que nós?</a>
                 <a href="#processo">Processo</a>
-                <a href="#vantagens">Vantagens</a>
-                <a href="#depoimentos">Depoimentos</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contato">Contato</a>
+                <a href="#planos">Preços</a>
+                <a href="#faq">Dúvidas</a>
             </nav>
 
             <div class="nav-right">
-                <div class="badge-projects">⚡ +250 projetos</div>
-                <a href="https://wa.me/5511900000000" class="btn-primary" style="padding: 12px 24px; font-size: 0.8rem;">
-                    QUERO MEU SITE →
+                <a href="https://wa.me/5511900000000" class="btn-primary btn-nav">
+                    FALAR COM ESPECIALISTA
                 </a>
             </div>
         </div>
-        <div class="scroll-progress"></div>
+        <div class="scroll-progress-bar"></div>
     </header>
 
     <main id="main-content">
@@ -111,17 +108,17 @@
                 <div class="hero-badge" data-reveal>
                     <span>🎯 SITE NO AR EM 15 DIAS OU 1 MÊS GRÁTIS</span>
                 </div>
-                <h1 class="text-display-lg" data-splitting>
+                <h1 class="text-display-lg" data-reveal>
                     PARE DE PERDER CLIENTES PARA<br>
                     <span class="gradient-text">SITES PIORES QUE O SEU.</span>
                 </h1>
-                <p class="hero-subtitle text-body-lg" data-reveal style="max-width: 700px;">
+                <p class="hero-subtitle text-body-lg" data-reveal style="max-width: 800px; margin: 32px auto;">
                     Construímos sua máquina de leads de alta performance por apenas <strong>R$ 197/mês</strong>. 
-                    Sem custos de setup, sem burocracia e com foco total em converter cliques em dinheiro no seu bolso.
+                    Design premium, velocidade recorde e foco total em conversão.
                 </p>
                 <div class="hero-ctas" data-reveal>
-                    <a href="https://wa.me/5511900000000?text=Olá!%20Quero%20meu%20site%20de%20alta%20performance." class="btn-primary">QUERO MEU SITE AGORA</a>
-                    <a href="#portfolio" class="btn-outline">VER RESULTADOS ↗</a>
+                    <a href="https://wa.me/5511900000000?text=Olá!%20Quero%20meu%20site%20de%20alta%20performance." class="btn-primary btn-lg">QUERO MEU SITE AGORA</a>
+                    <a href="#portfolio" class="btn-outline btn-lg">VER RESULTADOS ↗</a>
                 </div>
                 <div class="hero-meta" data-reveal>
                     ✓ Resposta em 5 min  ·  ✓ Sem fidelidade  ·  ✓ Diagnóstico Grátis
@@ -156,196 +153,82 @@
             </div>
         </div>
 
-        <!-- SEÇÃO 4 — PORTFÓLIO (9 CARDS) -->
+        <!-- SEÇÃO 8 — PORTFÓLIO (RESULTADOS REAIS) -->
         <section id="portfolio">
             <div class="container">
                 <div class="section-header" style="text-align: center;">
-                    <span class="section-label" data-reveal>NOSSO TRABALHO</span>
-                    <h2 class="text-h2" data-reveal>SITES QUE <span class="gradient-text" style="font-style: italic;">CONVERTEM</span></h2>
+                    <span class="section-label" data-reveal>RESULTADOS</span>
+                    <h2 class="text-h2" data-reveal>Projetos que <span class="gradient-text">geram lucro</span></h2>
                 </div>
                 <div class="portfolio-grid">
                     <!-- CARD 1 -->
                     <div class="portfolio-card" data-reveal>
                         <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">ethereal-commerce.com.br</span>
-                            </div>
+                            <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
                             <div class="card-preview">
-                                <img src="/public/p1.png" alt="Ethereal Commerce" loading="lazy">
+                                <img src="/public/p1.png" alt="Ethereal Commerce">
+                                <div class="card-info-overlay">
+                                    <span class="card-nicho">NICHO: E-COMMERCE</span>
+                                    <span class="card-goal">OBJETIVO: VENDAS DIRETAS</span>
+                                    <span class="card-result">RESULTADO: +62% CONVERSÃO</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <span class="card-tag">E-COMMERCE</span>
-                            <h3 class="card-title">Ethereal Commerce</h3>
-                            <span class="card-result">+62% em pedidos</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
+                        <div class="card-hover-overlay"><a href="#" class="btn-visit">VER PROJETO</a></div>
                     </div>
                     <!-- CARD 2 -->
                     <div class="portfolio-card" data-reveal>
                         <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">chronos-dash.io</span>
-                            </div>
+                            <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
                             <div class="card-preview">
-                                <img src="/public/p2.png" alt="Chronos Dashboard" loading="lazy">
+                                <img src="/public/p2.png" alt="Chronos Dash">
+                                <div class="card-info-overlay">
+                                    <span class="card-nicho">NICHO: SAAS / B2B</span>
+                                    <span class="card-goal">OBJETIVO: TRIAL SIGNUPS</span>
+                                    <span class="card-result">RESULTADO: 3.5X MAIS LEADS</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <span class="card-tag">SaaS</span>
-                            <h3 class="card-title">Chronos Dashboard</h3>
-                            <span class="card-result">3x mais demos</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
+                        <div class="card-hover-overlay"><a href="#" class="btn-visit">VER PROJETO</a></div>
                     </div>
                     <!-- CARD 3 -->
                     <div class="portfolio-card" data-reveal>
                         <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">aura-creative.com</span>
-                            </div>
+                            <div class="browser-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
                             <div class="card-preview">
-                                <img src="/public/p3.png" alt="Aura Creative" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-tag">PORTFÓLIO</span>
-                            <h3 class="card-title">Aura Creative Agency</h3>
-                            <span class="card-result">+R$40k em projetos</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
-                    </div>
-                    <!-- CARD 4 -->
-                    <div class="portfolio-card" data-reveal>
-                        <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">pulse-saas.com.br</span>
-                            </div>
-                            <div class="card-preview">
-                                <img src="/public/p4.png" alt="Pulse SaaS" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-tag">AQUISIÇÃO B2B</span>
-                            <h3 class="card-title">Pulse SaaS</h3>
-                            <span class="card-result">Ciclo de vendas -40%</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
-                    </div>
-                    <!-- CARD 5 -->
-                    <div class="portfolio-card" data-reveal>
-                        <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">biotech-analytics.com.br</span>
-                            </div>
-                            <div class="card-preview">
-                                <img src="/public/p5.png" alt="BioTech Analytics" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-tag">AUTORIDADE DIGITAL</span>
-                            <h3 class="card-title">BioTech Analytics</h3>
-                            <span class="card-result">2x mais reuniões/mês</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
-                    </div>
-                    <!-- CARD 6 -->
-                    <div class="portfolio-card" data-reveal>
-                        <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">obsidian-portfolio.com.br</span>
-                            </div>
-                            <div class="card-preview">
-                                <img src="https://picsum.photos/seed/obsidian/800/500" alt="Obsidian Portfolio" loading="lazy">
-                                <div class="card-pills">
-                                    <span class="pill">ROI</span><span class="pill">Minimal</span><span class="pill">Fast</span>
+                                <img src="/public/p3.png" alt="Aura Creative">
+                                <div class="card-info-overlay">
+                                    <span class="card-nicho">NICHO: AGÊNCIA</span>
+                                    <span class="card-goal">OBJETIVO: AUTORIDADE</span>
+                                    <span class="card-result">RESULTADO: R$ 40K EM LEADS</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <span class="card-tag">FOCO EM RESULTADOS</span>
-                            <h3 class="card-title">Obsidian Portfolio</h3>
-                            <span class="card-result">Site pago em 18 dias</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
+                        <div class="card-hover-overlay"><a href="#" class="btn-visit">VER PROJETO</a></div>
                     </div>
-                    <!-- CARD 7 (LINHA 3 - LARGO) -->
-                    <div class="portfolio-card" data-reveal>
-                        <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">nova-store.com.br</span>
-                            </div>
-                            <div class="card-preview">
-                                <img src="https://picsum.photos/seed/nova/1200/500" alt="Nova Store" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-tag">E-COMMERCE</span>
-                            <h3 class="card-title">Nova Store</h3>
-                            <span class="card-result">+89% conversão mobile</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 9 — PROVA SOCIAL (DEPOIMENTOS) -->
+        <section id="depoimentos" style="background: var(--bg-surface);">
+            <div class="container">
+                <div class="section-header" style="text-align: center;">
+                    <span class="section-label" data-reveal>PROVA SOCIAL</span>
+                    <h2 class="text-h2" data-reveal>O que dizem nossos <span class="gradient-text">parceiros</span></h2>
+                </div>
+                <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 60px;">
+                    <div class="testimonial-card-v2" data-reveal>
+                        <div class="t-header"><div class="t-avatar">RP</div><div class="t-info"><strong>Rodrigo P.</strong><span>Dono de Agência</span></div></div>
+                        <p>"A DUNO Nexus entregou um site em 12 dias que mudou meu fechamento. De cada 10 que entram no WhatsApp, 3 viram reunião."</p>
                     </div>
-                    <!-- CARD 8 -->
-                    <div class="portfolio-card" data-reveal>
-                        <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">apex-consultoria.com.br</span>
-                            </div>
-                            <div class="card-preview">
-                                <img src="https://picsum.photos/seed/apex/800/500" alt="Apex Consultoria" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-tag">LANDING PAGE</span>
-                            <h3 class="card-title">Apex Consultoria</h3>
-                            <span class="card-result">Taxa de conv: 8.4%</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
+                    <div class="testimonial-card-v2" data-reveal>
+                        <div class="t-header"><div class="t-avatar">ML</div><div class="t-info"><strong>Marina L.</strong><span>E-commerce de Joias</span></div></div>
+                        <p>"O design é de nível internacional e o suporte é imediato. Recomendo para qualquer empresário que queira crescer."</p>
                     </div>
-                    <!-- CARD 9 -->
-                    <div class="portfolio-card" data-reveal>
-                        <div class="browser-mockup">
-                            <div class="browser-bar">
-                                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                                <span class="browser-url">vertice-arquitetura.com.br</span>
-                            </div>
-                            <div class="card-preview">
-                                <img src="https://picsum.photos/seed/vertice/800/500" alt="Vértice Arquitetura" loading="lazy">
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <span class="card-tag">CORPORATIVO</span>
-                            <h3 class="card-title">Vértice Arquitetura</h3>
-                            <span class="card-result">+120% leads qualificados</span>
-                        </div>
-                        <div class="card-hover-overlay">
-                            <a href="#" target="_blank" rel="noopener" class="btn-visit">VISITAR SITE ↗</a>
-                        </div>
+                    <div class="testimonial-card-v2" data-reveal>
+                        <div class="t-header"><div class="t-avatar">JS</div><div class="t-info"><strong>João S.</strong><span>Clínica Odonto</span></div></div>
+                        <p>"Minha agenda nunca esteve tão cheia. O site carrega em um piscar de olhos e os clientes comentam sobre a facilidade de contato."</p>
                     </div>
                 </div>
             </div>
@@ -629,6 +512,11 @@
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
     </a>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="https://wa.me/5511900000000" class="btn-primary btn-lg" style="margin: 0;">FALAR NO WHATSAPP</a>
+    </div>
 
     <!-- Scripts -->
     <script type="module" src="/src/main.js"></script>
