@@ -141,7 +141,6 @@ img {
 .proof-item { display: flex; flex-direction: column; align-items: center; }
 .proof-val { font-family: var(--font-display); font-size: 1.5rem; color: white; }
 .proof-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
- font-family: var(--font-display); }
 .text-display-md { font-size: clamp(2.5rem, 6vw, 6rem); line-height: 0.95; font-family: var(--font-display); }
 
 .text-h1 { font-size: clamp(2rem, 4.5vw, 4.5rem); line-height: 1.05; font-weight: 800; font-family: var(--font-ui); }
