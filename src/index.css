@@ -740,8 +740,34 @@ section, .section {
 }
 
 /* Process Step Descriptions */
-.step-desc {
-  font-size: 0.82rem; color: #9898b8; line-height: 1.6; margin-top: 8px; max-width: 180px; text-align: center;
+.step-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  position: relative;
+  transition: transform 0.4s var(--ease-out), border-color 0.4s;
+}
+.step-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--brand-pink);
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: rgba(240, 18, 122, 0.15);
+  line-height: 1;
+  margin-bottom: 15px;
+}
+.step-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+.step-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
 }
 
 /* Vantagens & Comparison Table */
