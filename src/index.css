@@ -56,9 +56,10 @@
   --space-24: 96px;
   --space-32: 128px;
 
-  /* Tipografia */
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-ui: 'Bricolage Grotesque', sans-serif;
+  /* Tipografia Premium 2026 */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-price: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Raios */
@@ -90,6 +91,7 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700;800&family=Space+Grotesk:wght@700&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap');
 html {
   scroll-behavior: initial; /* Lenis handles smooth scroll */
 }
@@ -121,7 +123,25 @@ img {
 
 /* Tipografia Fluida */
 .text-display-xl { font-size: clamp(5rem, 14vw, 14rem); line-height: 0.9; letter-spacing: -0.02em; font-family: var(--font-display); }
-.text-display-lg { font-size: clamp(3.5rem, 9vw, 9rem); line-height: 0.92; letter-spacing: -0.015em; font-family: var(--font-display); }
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 8vw, 4.8rem);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+.text-display-lg span.highlight {
+  color: var(--brand-pink);
+  display: inline-block;
+}
+
+.hero-proof-block {
+  display: flex; gap: 40px; justify-content: center; margin-top: 60px;
+  padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
+}
+.proof-item { display: flex; flex-direction: column; align-items: center; }
+.proof-val { font-family: var(--font-display); font-size: 1.5rem; color: white; }
+.proof-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+ font-family: var(--font-display); }
 .text-display-md { font-size: clamp(2.5rem, 6vw, 6rem); line-height: 0.95; font-family: var(--font-display); }
 
 .text-h1 { font-size: clamp(2rem, 4.5vw, 4.5rem); line-height: 1.05; font-weight: 800; font-family: var(--font-ui); }
@@ -239,7 +259,11 @@ img {
 }
 
 .logo { display: flex; flex-direction: column; }
-.logo-main { font-family: var(--font-display); font-size: 2rem; color: var(--brand-pink); line-height: 1; }
+.plano-value {
+  font-family: var(--font-price);
+  font-size: 5rem; font-weight: 700;
+  color: var(--brand-pink); text-shadow: 0 0 20px rgba(255, 0, 204, 0.3);
+}
 .logo-sub { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); letter-spacing: 0.3em; }
 
 .nav-links { display: flex; gap: var(--space-8); }
