@@ -3,240 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUNO Nexus — Pack Exclusivo de Templates</title>
-    <meta name="description" content="Acesso exclusivo ao pack de templates de alta performance.">
-    <link rel="stylesheet" href="/src/index.css">
+    <title>DUNO — Pack de Templates de Alta Performance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* DESIGN SYSTEM - AUDIT 10/10 */
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #0E0E0E;
+            --accent-primary: #F5C400; /* Amarelo */
+            --accent-secondary: #C084FC; /* Roxo */
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --border-card: 1px solid rgba(255, 255, 255, 0.06);
+            --radius-std: 10px;
+            --radius-card: 12px;
+            --transition: 220ms ease;
+        }
+
+        /* Typography Scale */
+        h1 { font-size: clamp(36px, 5.5vw, 64px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; }
+        h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+        h3 { font-size: clamp(20px, 2.5vw, 32px); font-weight: 600; line-height: 1.3; }
+        body { font-size: 16px; font-weight: 400; line-height: 1.7; color: var(--text-primary); }
+        .caption { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
+        .text-accent-purple { color: var(--accent-secondary); }
+        .text-accent-yellow { color: var(--accent-primary); }
+
+        /* Global Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-primary); overflow-x: hidden; }
+        section { padding: 100px 0; position: relative; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Scroll Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 600ms ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Buttons */
+        .btn { 
+            display: inline-flex; align-items: center; justify-content: center;
+            min-height: 52px; padding: 18px 48px; border-radius: 8px;
+            font-size: 16px; font-weight: 700; text-decoration: none;
+            transition: var(--transition); cursor: pointer; border: none;
+        }
+        .btn-primary { background: var(--accent-primary); color: #0A0A0A; min-width: 280px; }
+        .btn-primary:hover { background: #FFD700; transform: scale(1.02); }
+        .btn-ghost { background: transparent; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-ghost:hover { background: rgba(255,255,255,0.05); }
+
+        /* Hero */
+        .hero { text-align: center; padding: 140px 0 100px; background: radial-gradient(circle at top, #151025 0%, #080808 60%); }
+        .hero-badge { 
+            display: inline-flex; padding: 6px 16px; background: rgba(255,255,255,0.04); 
+            border: var(--border-card); border-radius: 99px; margin-bottom: 24px;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid { display: grid; gap: 32px; grid-template-columns: repeat(1, 1fr); margin-top: 60px; }
+        .portfolio-card { 
+            background: var(--bg-secondary); border: var(--border-card); 
+            border-radius: var(--radius-card); overflow: hidden; position: relative;
+            transition: var(--transition); cursor: pointer;
+        }
+        .portfolio-card:hover { transform: scale(1.03); z-index: 10; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .card-img { width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: var(--transition); }
+        .card-overlay { 
+            position: absolute; inset: 0; background: rgba(0,0,0,0.6); opacity: 0;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .portfolio-card:hover .card-overlay { opacity: 1; }
+        .card-tag { 
+            position: absolute; top: 16px; left: 16px; padding: 4px 10px;
+            background: rgba(245,196,0,0.15); color: var(--accent-primary);
+            border-radius: 4px; font-size: 11px; font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonial-grid { display: grid; gap: 24px; grid-template-columns: repeat(1, 1fr); margin-top: 60px; }
+        .testi-card { background: var(--bg-secondary); padding: 32px; border: var(--border-card); border-radius: var(--radius-std); }
+        .testi-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .testi-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+        .testi-name { font-size: 14px; font-weight: 700; }
+        .testi-nicho { font-size: 12px; color: var(--text-secondary); }
+
+        /* Features */
+        .features-grid { display: grid; gap: 24px; grid-template-columns: repeat(1, 1fr); margin-top: 60px; }
+        .feature-card { padding: 40px; background: var(--bg-primary); border: var(--border-card); border-radius: var(--radius-std); }
+        .feature-icon-box { 
+            width: 48px; height: 48px; background: rgba(255,255,255,0.05); 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 10px; margin-bottom: 24px;
+        }
+
+        /* Pricing Section */
+        .pricing-box { 
+            max-width: 600px; margin: 60px auto; text-align: center; 
+            padding: 60px 40px; background: #0A0A0A; border: 1px solid rgba(245,196,0,0.2);
+            border-radius: 24px; box-shadow: 0 0 40px rgba(245,196,0,0.05);
+        }
+        .price-anchor { text-decoration: line-through; opacity: 0.5; font-size: 20px; }
+        .price-main { font-size: clamp(48px, 8vw, 72px); font-weight: 700; color: var(--accent-primary); line-height: 1; }
+        .price-timer { margin-top: 24px; padding: 12px; background: rgba(245,196,0,0.1); color: var(--accent-primary); border-radius: 8px; font-weight: 600; display: inline-block; }
+
+        /* FAQ Accordion */
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .faq-trigger { 
+            width: 100%; padding: 24px 0; background: none; border: none; 
+            display: flex; justify-content: space-between; align-items: center;
+            color: white; font-size: 18px; font-weight: 600; cursor: pointer; text-align: left;
+        }
+        .faq-content { max-height: 0; overflow: hidden; transition: 300ms ease; opacity: 0; }
+        .faq-item.active .faq-content { max-height: 200px; padding-bottom: 24px; opacity: 1; }
+        .faq-icon { transition: 200ms; font-size: 24px; color: var(--accent-primary); }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        /* Mobile Breakpoints */
+        @media (min-width: 768px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+            .features-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- NAVBAR (SIMPLE & CLEAN) -->
-    <header class="container" style="padding-top: 40px; display: flex; justify-content: space-between; align-items: center;">
-        <div class="logo">
-            <span style="font-weight: 900; font-size: 1.5rem; letter-spacing: 2px;">DUNO</span>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="container reveal">
+            <div class="hero-badge caption">⚡ Mais de 420 empreendedores usando</div>
+            <h1>Pare de perder clientes por causa de <br> um <span class="text-accent-purple">site amador.</span></h1>
+            <h2 class="text-accent-yellow">40+ páginas prontas pra vender, no ar em menos de 48h.</h2>
+            <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                O pack definitivo de templates para Elementor focado em conversão brutal. <br>
+                Sem precisar saber design ou perder semanas editando.
+            </p>
+            <a href="#oferta" class="btn btn-primary">QUERO ACESSO IMEDIATO</a>
         </div>
-        <a href="https://wa.me/5511900000000" class="btn-primary" style="padding: 12px 24px; font-size: 0.9rem;">FALAR COM ESPECIALISTA</a>
-    </header>
+    </section>
 
-    <main>
-        <!-- HERO SECTION (SCREENSHOT MATCH) -->
-        <section class="container" style="text-align: center;">
-            <div class="hero-content">
-                <h1 class="text-display-lg" style="margin-bottom: 30px;">
-                    Pack exclusivo de <br>
-                    páginas de venda <br>
-                    <span class="highlight-gradient">profissionais e de alta performance</span>
-                </h1>
-                <p class="text-body" style="max-width: 800px; margin: 0 auto 50px;">
-                    Tenha acesso ao meu pack exclusivo com mais de 40 templates prontos <br>
-                    desenvolvidos por mim mesmo!
-                </p>
-                <a href="https://wa.me/5511900000000" class="btn-primary">QUERO ACESSO IMEDIATO</a>
+    <!-- PORTFOLIO -->
+    <section id="portfolio" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div style="text-align: center;" class="reveal">
+                <h2 style="margin-bottom: 12px;">Projetos que geram clientes</h2>
+                <p class="caption">Design de elite validado pelo mercado.</p>
             </div>
-        </section>
+            <div class="portfolio-grid reveal">
+                <!-- 9 cards uniformes -->
+                <script>
+                    const niches = ['Inteligência Artificial', 'Hamburgueria Pro', 'Mentoria Elite', 'Advocacia Business', 'Estética Premium', 'E-commerce Luxo', 'SaaS Digital', 'Imobiliária Pro', 'Clínica Médica'];
+                    niches.forEach((niche, i) => {
+                        document.write(`
+                        <div class="portfolio-card">
+                            ${i < 3 ? '<span class="card-tag">Novo</span>' : ''}
+                            <img src="https://picsum.photos/seed/${i+10}/800/500" class="card-img" alt="${niche}">
+                            <div class="card-overlay">
+                                <span class="btn btn-ghost" style="padding: 10px 20px; font-size: 14px;">Ver Demo</span>
+                            </div>
+                            <div style="padding: 20px;">
+                                <h3 style="font-size: 18px; font-weight: 700;">${niche}</h3>
+                                <p class="caption">Template de Alta Conversão</p>
+                            </div>
+                        </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
 
-        <!-- PORTFOLIO SECTION (9 CARDS - CATALOG STYLE) -->
-        <section id="portfolio" class="container">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <span style="color: var(--brand-pink); font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">CATÁLOGO PREMIUM</span>
-                <h2 class="text-display-lg" style="font-size: 2.5rem; margin-top: 10px;">PROJETOS QUE GERAM CLIENTES</h2>
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container">
+            <div style="text-align: center;" class="reveal">
+                <h2>O que dizem nossos clientes</h2>
             </div>
-            <div class="portfolio-grid">
-                <!-- 1 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://dedetizadora.duno.net.br/og-image.jpg" alt="IA">
+            <div class="testimonial-grid reveal">
+                <div class="testi-card">
+                    <div class="testi-header">
+                        <img src="https://i.pravatar.cc/150?u=1" class="testi-avatar" alt="Avatar">
+                        <div>
+                            <div class="testi-name">Marcos Silva</div>
+                            <div class="testi-nicho">Nichos de Delivery</div>
+                        </div>
                     </div>
-                    <div class="card-title">Inteligência Artificial <span class="tag-novo">Novo</span></div>
+                    <p style="font-size: 15px;">"Meu site saiu do ar em 2 dias e já gerou <strong>3 clientes no WhatsApp</strong>. O design é absurdo!"</p>
                 </div>
-                <!-- 2 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/burger/800/500" alt="Hamburgueria">
+                <div class="testi-card">
+                    <div class="testi-header">
+                        <img src="https://i.pravatar.cc/150?u=2" class="testi-avatar" alt="Avatar">
+                        <div>
+                            <div class="testi-name">Ana Paula</div>
+                            <div class="testi-nicho">Estética & Bem Estar</div>
+                        </div>
                     </div>
-                    <div class="card-title">Hamburgueria <span class="tag-novo">Novo</span></div>
+                    <p style="font-size: 15px;">"Os templates são muito fáceis de editar. Em uma tarde deixei tudo pronto e <strong>já comecei a vender</strong>."</p>
                 </div>
-                <!-- 3 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/mentor/800/500" alt="Mentoria">
+                <div class="testi-card">
+                    <div class="testi-header">
+                        <img src="https://i.pravatar.cc/150?u=3" class="testi-avatar" alt="Avatar">
+                        <div>
+                            <div class="testi-name">Rodrigo Lima</div>
+                            <div class="testi-nicho">Consultoria SaaS</div>
+                        </div>
                     </div>
-                    <div class="card-title">Mentoria <span class="tag-novo">Novo</span></div>
-                </div>
-                <!-- 4 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/law/800/500" alt="Advocacia">
-                    </div>
-                    <div class="card-title">Advocacia Elite <span class="tag-novo">Novo</span></div>
-                </div>
-                <!-- 5 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/spa/800/500" alt="Estética">
-                    </div>
-                    <div class="card-title">Estética Premium <span class="tag-novo">Novo</span></div>
-                </div>
-                <!-- 6 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/shop/800/500" alt="E-commerce">
-                    </div>
-                    <div class="card-title">E-commerce Luxo <span class="tag-novo">Novo</span></div>
-                </div>
-                <!-- 7 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/saas/800/500" alt="SaaS">
-                    </div>
-                    <div class="card-title">SaaS Digital <span class="tag-novo">Novo</span></div>
-                </div>
-                <!-- 8 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/realestate/800/500" alt="Imobiliária">
-                    </div>
-                    <div class="card-title">Imobiliária Pro <span class="tag-novo">Novo</span></div>
-                </div>
-                <!-- 9 -->
-                <div class="portfolio-card">
-                    <div class="card-preview">
-                        <img src="https://picsum.photos/seed/health/800/500" alt="Saúde">
-                    </div>
-                    <div class="card-title">Clínica Médica <span class="tag-novo">Novo</span></div>
+                    <p style="font-size: 15px;">"A conversão da minha LP <strong>dobrou</strong> após aplicar o design do DUNO. Vale cada centavo."</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- PRICE SECTION -->
-        <section class="price-section">
-            <div class="container">
-                <div class="price-card">
-                    <span style="text-transform: uppercase; letter-spacing: 3px; color: var(--brand-pink); font-weight: 700;">OFERTA ÚNICA</span>
-                    <div class="price-tag">R$ 197<span style="font-size: 1.5rem;">/mês</span></div>
-                    <p style="margin: 20px 0 40px; color: var(--text-secondary);">Acesso vitalício ao pack de templates e atualizações.</p>
-                    <ul style="list-style: none; text-align: left; max-width: 300px; margin: 0 auto 40px; display: flex; flex-direction: column; gap: 12px;">
-                        <li>✅ +40 Templates Premium</li>
-                        <li>✅ Design Mobile-First</li>
-                        <li>✅ Suporte Exclusivo</li>
-                        <li>✅ Atualizações Vitalícias</li>
-                    </ul>
-                    <a href="https://wa.me/5511900000000" class="btn-primary" style="width: 100%;">COMPRAR AGORA</a>
-                </div>
+    <!-- FEATURES -->
+    <section id="features" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div style="text-align: center;" class="reveal">
+                <h2>Desenvolvido para converter</h2>
             </div>
-        </section>
-
-        <!-- FEATURES SECTION (SCREENSHOT 2) -->
-        <section class="container">
-            <div style="text-align: center; margin-bottom: 80px;">
-                <h2 class="text-display-lg" style="font-size: 3rem;">
-                    Escolha o <span class="highlight-gradient">template perfeito</span> e crie páginas <br> 
-                    impressionantes com <span class="highlight-gradient">facilidade</span>
-                </h2>
-            </div>
-            <div class="features-grid">
+            <div class="features-grid reveal">
                 <div class="feature-card">
-                    <span class="feature-icon">📱</span>
-                    <h3>Layouts <span>responsivos</span> em qualquer resolução</h3>
-                    <p>Templates projetados para oferecer uma experiência de navegação fluida em qualquer dispositivo.</p>
+                    <div class="feature-icon-box">📱</div>
+                    <h3>Layouts 60 FPS</h3>
+                    <p class="caption" style="margin-top: 10px;">Performance extrema em qualquer celular ou desktop.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">✉️</span>
-                    <h3>Suporte <span>online</span></h3>
-                    <p>Conte com nossa equipe disponível para tirar suas dúvidas sempre que precisar.</p>
+                    <div class="feature-icon-box">✉️</div>
+                    <h3>Suporte Humanizado</h3>
+                    <p class="caption" style="margin-top: 10px;">Dúvidas? Nossa equipe responde em minutos, não dias.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">📋</span>
-                    <h3>Muito <span>fácil</span> de editar no Elementor</h3>
-                    <p>Modifique textos, imagens e layouts com facilidade, sem precisar de conhecimento técnico.</p>
+                    <div class="feature-icon-box">📋</div>
+                    <h3>Fácil Edição</h3>
+                    <p class="caption" style="margin-top: 10px;">Copie, cole e altere cores. Sem código, apenas Elementor.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">⬇️</span>
-                    <h3>Atualizações <span>constantes</span></h3>
-                    <p>Receba melhorias e novos templates regularmente, sem custo adicional.</p>
+                    <div class="feature-icon-box">⬇️</div>
+                    <h3>Atualizações</h3>
+                    <p class="caption" style="margin-top: 10px;">Novos templates todos os meses sem custo extra.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">🕒</span>
-                    <h3>+ <span>Velocidade</span> na entrega dos seus projetos</h3>
-                    <p>Aumente sua produtividade e entregue sites profissionais de forma mais rápida.</p>
+                    <div class="feature-icon-box">🕒</div>
+                    <h3>Entrega Rápida</h3>
+                    <p class="caption" style="margin-top: 10px;">Instalação em 1 clique e sua página está pronta.</p>
                 </div>
                 <div class="feature-card">
-                    <span class="feature-icon">🚀</span>
-                    <h3>Páginas <span>otimizadas</span></h3>
-                    <p>Templates construídos de forma "limpa" somente com Elementor.</p>
+                    <div class="feature-icon-box">🚀</div>
+                    <h3>SEO Amigável</h3>
+                    <p class="caption" style="margin-top: 10px;">Estrutura otimizada para o Google amar seu site.</p>
                 </div>
             </div>
-        </section>
-        <!-- BENEFITS SECTION -->
-        <section class="container" style="background: var(--bg-surface); border-radius: 40px; padding: 80px 60px; margin-top: 60px;">
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; align-items: center;">
-                <div>
-                    <h2 class="text-display-lg" style="font-size: 2.5rem; margin-bottom: 24px;">Por que <span class="highlight-gradient">alocar</span> um site?</h2>
-                    <p class="text-body" style="margin-bottom: 40px;">Esqueça o alto custo de desenvolvimento inicial. Com a alocação, você tem um site de elite por um valor mensal acessível.</p>
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
-                        <li>🚀 <strong>Velocidade Total:</strong> Site no ar em até 48 horas.</li>
-                        <li>🛠️ <strong>Manutenção Inclusa:</strong> Você foca no negócio, nós cuidamos do técnico.</li>
-                        <li>💰 <strong>Baixo Risco:</strong> Sem custos ocultos ou taxas de configuração gigantes.</li>
-                    </ul>
-                </div>
-                <div style="border: 1px solid rgba(255,0,122,0.3); border-radius: 24px; padding: 40px; background: #000;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">⚡</div>
-                    <h3 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 16px;">O Futuro da Presença Online</h3>
-                    <p style="color: var(--text-secondary);">Empresas modernas não compram servidores, elas alugam. O mesmo vale para sites de alta conversão.</p>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- PROCESS SECTION -->
-        <section id="process" class="container">
-            <div style="text-align: center; margin-bottom: 80px;">
-                <span style="color: var(--brand-pink); font-weight: 700; letter-spacing: 2px;">PROCESSO ACELERADO</span>
-                <h2 class="text-display-lg" style="font-size: 3rem; margin-top: 10px;">SEU SITE NO AR EM <span class="highlight-gradient">3 PASSOS</span></h2>
+    <!-- OFERTA/PREÇO -->
+    <section id="oferta">
+        <div class="container reveal">
+            <div class="pricing-box">
+                <span class="text-accent-yellow caption" style="font-weight: 700;">🔥 OFERTA POR TEMPO LIMITADO</span>
+                <div style="margin: 20px 0;">
+                    <span class="price-anchor">De R$ 497</span>
+                    <div class="price-main">R$ 197<span style="font-size: 20px;">/mês</span></div>
+                    <p class="caption" style="margin-top: 10px;">Equivale a apenas <span class="text-accent-yellow">R$ 6,57/dia</span></p>
+                </div>
+                <ul style="list-style: none; text-align: left; margin: 30px 0; display: flex; flex-direction: column; gap: 12px;">
+                    <li>✅ +40 Templates Premium</li>
+                    <li>✅ Atualizações Vitalícias</li>
+                    <li>✅ Suporte Prioritário</li>
+                    <li>✅ Garantia de 7 Dias ou seu dinheiro de volta</li>
+                </ul>
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                    <a href="#" class="btn btn-primary">QUERO ACESSO IMEDIATO</a>
+                    <a href="#" class="btn btn-ghost">Ver Demo Gratuita</a>
+                </div>
+                <div class="price-timer" id="countdown">A oferta encerra em 00:00:00</div>
+                <p class="caption" style="margin-top: 20px;">🛡️ Pagamento 100% Seguro</p>
             </div>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.05); margin-bottom: -40px;">01</div>
-                    <h3 style="font-size: 1.5rem; font-weight: 900;">Escolha o Template</h3>
-                    <p style="color: var(--text-secondary); margin-top: 10px;">Selecione o modelo que melhor se adapta ao seu nicho no nosso catálogo.</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.05); margin-bottom: -40px;">02</div>
-                    <h3 style="font-size: 1.5rem; font-weight: 900;">Customização</h3>
-                    <p style="color: var(--text-secondary); margin-top: 10px;">Nós adaptamos suas cores, textos e imagens para sua marca.</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 3rem; font-weight: 900; color: rgba(255,255,255,0.05); margin-bottom: -40px;">03</div>
-                    <h3 style="font-size: 1.5rem; font-weight: 900;">Lançamento</h3>
-                    <p style="color: var(--text-secondary); margin-top: 10px;">Em até 48h seu site está pronto para receber clientes.</p>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FAQ SECTION -->
-        <section id="faq" class="container" style="max-width: 800px;">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2 class="text-display-lg" style="font-size: 2.5rem;">DÚVIDAS SOBRE <span class="highlight-gradient">ALOCAÇÃO</span></h2>
+    <!-- PROCESSO -->
+    <section id="processo" style="background: var(--bg-secondary);">
+        <div class="container reveal" style="text-align: center;">
+            <h2 style="margin-bottom: 60px;">Seu site novo em 3 passos</h2>
+            <div style="display: grid; gap: 40px; grid-template-columns: repeat(1, 1fr);" id="process-grid">
+                <div style="padding: 20px;">
+                    <div class="feature-icon-box" style="margin: 0 auto 20px;">1</div>
+                    <h3>Escolha o Modelo</h3>
+                    <p class="caption">Navegue pelo catálogo e escolha o ideal para você.</p>
+                </div>
+                <div style="padding: 20px;">
+                    <div class="feature-icon-box" style="margin: 0 auto 20px;">2</div>
+                    <h3>Importe pro Elementor</h3>
+                    <p class="caption">Suba o arquivo e mude cores e textos em segundos.</p>
+                </div>
+                <div style="padding: 20px;">
+                    <div class="feature-icon-box" style="margin: 0 auto 20px;">3</div>
+                    <h3>Comece a Vender</h3>
+                    <p class="caption">Publique sua página e receba seus novos clientes.</p>
+                </div>
             </div>
-            <div style="display: flex; flex-direction: column; gap: 20px;">
-                <div style="background: var(--bg-surface); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-                    <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">O site é meu?</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">No modelo de alocação, você paga pelo direito de uso e manutenção. É como o aluguel de um escritório premium.</p>
-                </div>
-                <div style="background: var(--bg-surface); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-                    <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Posso usar meu próprio domínio?</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Sim! Nós configuramos seu domínio profissional (ex: www.suaempresa.com.br) sem custo adicional.</p>
-                </div>
-                <div style="background: var(--bg-surface); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05);">
-                    <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">E se eu quiser cancelar?</h4>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Não há fidelidade longa. Você pode cancelar a qualquer momento seguindo os termos do seu plano mensal.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="container" style="padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; opacity: 0.6;">
-        <p>© 2026 DUNO Nexus. Todos os direitos reservados.</p>
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div style="text-align: center; margin-bottom: 60px;" class="reveal">
+                <h2>Objeções? Aqui estão as respostas.</h2>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <button class="faq-trigger"><span>E se eu não souber editar?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-content"><p class="caption">Você recebe um treinamento em vídeo mostrando passo a passo como importar e editar tudo sem tocar em uma linha de código.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger"><span>Funciona para meu nicho?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-content"><p class="caption">Sim! Nossos templates são universais. Você pode adaptar qualquer modelo para qualquer negócio mudando apenas as fotos e textos.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger"><span>Como recebo o acesso?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-content"><p class="caption">Imediatamente após a confirmação do pagamento. Você recebe os links de download no seu e-mail.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger"><span>Tenho garantia?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-content"><p class="caption">Com certeza. Se em até 7 dias você achar que o pack não é para você, devolvemos 100% do seu dinheiro. Sem perguntas.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section style="background: radial-gradient(circle at center, #151025 0%, #080808 100%); text-align: center;">
+        <div class="container reveal">
+            <h2>Pronto para ter um site que vende <br> enquanto você dorme?</h2>
+            <p style="color: var(--text-secondary); margin: 20px 0 40px;">Não deixe sua concorrência passar na frente com um design melhor.</p>
+            <a href="#oferta" class="btn btn-primary">QUERO ACESSO IMEDIATO</a>
+            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 24px; opacity: 0.5;">
+                <span class="caption">✅ Compra Segura</span>
+                <span class="caption">✅ Suporte 24/7</span>
+                <span class="caption">✅ 7 Dias Garantia</span>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+        <p class="caption">© 2026 DUNO. Design de Elite focado em Conversão.</p>
     </footer>
 
-    <script type="module" src="/src/main.js"></script>
+    <script>
+        // REVEAL ANIMATION
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => revealObserver.observe(r));
+
+        // FAQ ACCORDION
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // COUNTDOWN TIMER
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(() => {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                display.textContent = `A oferta encerra em ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+        startTimer(3600 * 4, document.querySelector('#countdown'));
+
+        // RESPONSIVE GRIDS VIA JS FOR PROCESS (Cleanest way for specific gap)
+        if (window.innerWidth >= 768) {
+            document.querySelector('#process-grid').style.gridTemplateColumns = 'repeat(3, 1fr)';
+        }
+    </script>
 </body>
 </html>
