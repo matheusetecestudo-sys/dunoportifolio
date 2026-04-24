@@ -29,15 +29,15 @@
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700;800&family=Space+Grotesk:wght@700&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap');
+
 html {
   scroll-behavior: initial; /* Lenis handles smooth scroll */
 }
 
 body {
-  background-color: var(--bg-void);
+  background: var(--bg-pure);
   color: var(--text-primary);
-  font-family: var(--font-ui);
+  font-family: var(--font-main);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -55,6 +55,9 @@ ul {
 
 img {
   max-width: 100%;
+  display: block;
+}
+
 /* Tipografia Impactante */
 .text-display-lg {
   font-family: var(--font-main);
