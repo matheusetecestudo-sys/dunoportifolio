@@ -1,89 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap');
 
 :root {
-  /* Backgrounds */
-  --bg-void: #060610;
-  --bg-base: #0a0a18;
-  --bg-surface: #0e0e1e;
-  --bg-elevated: #141428;
-  --bg-overlay: rgba(6, 6, 16, 0.92);
-
-  /* Brand */
-  --brand-pink: #f0127a;
-  --brand-violet: #8b2cf5;
-  --brand-blue: #2563eb;
-  --brand-cyan: #06b6d4;
-
-  /* Gradientes */
-  --grad-brand: linear-gradient(135deg, #f0127a 0%, #8b2cf5 55%, #2563eb 100%);
-  --grad-cta: linear-gradient(135deg, #f0127a, #8b2cf5);
-  --grad-subtle: linear-gradient(180deg, transparent, rgba(240, 18, 122, 0.05));
-  --grad-card-border: linear-gradient(135deg, rgba(240, 18, 122, 0.4), rgba(139, 44, 245, 0.2), transparent);
-
-  /* Texto */
-  --text-primary: #f8f8ff;
-  --text-secondary: #9898b8;
-  --text-muted: #4a4a6a;
-  --text-brand: #f0127a;
-
-  /* Bordas */
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-card: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(240, 18, 122, 0.35);
-  --border-active: rgba(240, 18, 122, 0.7);
-
-  /* Sombras */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
-  --shadow-pink-sm: 0 0 20px rgba(240, 18, 122, 0.2);
-  --shadow-pink-md: 0 0 40px rgba(240, 18, 122, 0.35);
-  --shadow-pink-lg: 0 0 80px rgba(240, 18, 122, 0.5);
-  --shadow-violet: 0 0 40px rgba(139, 44, 245, 0.3);
-
-  /* Espaçamento (sistema 8pt) */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
-  --space-32: 128px;
-
-  /* Sistema de Design — Alinhamento Rigoroso */
-  --container-width: 1280px;
-  --section-padding: 120px;
-  --grid-gap: 32px;
-  --radius-premium: 24px;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
-
-  /* Tipografia Premium 2026 */
-  --font-display: 'Sora', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-price: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Raios */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 32px;
-  --radius-full: 9999px;
-
-  /* Transições */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
-  --duration-fast: 150ms;
-  --duration-normal: 350ms;
-  --duration-slow: 600ms;
-  --duration-slower: 800ms;
+  /* Design DNA: Aprendendo Sites */
+  --brand-pink: #FF007A;
+  --brand-purple: #7000FF;
+  --brand-gold: linear-gradient(90deg, #FFD700, #FFA500);
+  --bg-pure: #000000;
+  --bg-surface: #0A0A0A;
+  --text-primary: #FFFFFF;
+  --text-secondary: #BBBBBB;
+  --font-main: 'Montserrat', sans-serif;
+  --grad-neon: linear-gradient(90deg, var(--brand-pink), var(--brand-purple));
+  --shadow-gold: 0 0 20px rgba(255, 215, 0, 0.3);
+  --radius-premium: 32px;
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .container {
@@ -125,26 +55,95 @@ ul {
 
 img {
   max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Tipografia Fluida */
-.text-display-xl { font-size: clamp(5rem, 14vw, 14rem); line-height: 0.9; letter-spacing: -0.02em; font-family: var(--font-display); }
+/* Tipografia Impactante */
 .text-display-lg {
-  font-family: var(--font-display);
-  font-size: clamp(3.2rem, 8vw, 4.8rem);
-  font-weight: 800; line-height: 1.05; letter-spacing: -0.04em;
+  font-family: var(--font-main);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
 }
-.text-display-lg span.highlight {
-  color: var(--brand-pink);
-  display: inline-block;
+.highlight-gradient {
+  background: var(--grad-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.hero-proof-block {
-  display: flex; gap: 40px; justify-content: center; margin-top: 60px;
-  padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05);
+/* Botão Golden Conversion */
+.btn-primary {
+  background: var(--brand-gold);
+  color: black !important;
+  font-weight: 900;
+  padding: 20px 48px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-gold);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+}
+
+/* Portfolio Style Replicated */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.portfolio-card {
+  transition: all 0.4s var(--ease-out);
+}
+.portfolio-card:hover {
+  transform: scale(1.03);
+}
+.card-preview {
+  position: relative;
+  border-radius: var(--radius-premium);
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: var(--grad-neon) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  aspect-ratio: 16/10;
+}
+/* Fallback for border gradient */
+.card-preview::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: var(--grad-neon);
+  z-index: -1;
+  border-radius: var(--radius-premium);
+}
+.card-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-premium) - 2px);
+}
+.card-title {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+}
+.card-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255, 0, 122, 0.1);
+  border: 1px solid var(--brand-pink);
+  color: var(--brand-pink);
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 .proof-item { display: flex; flex-direction: column; align-items: center; }
 .proof-val { font-family: var(--font-display); font-size: 1.5rem; color: white; }
