@@ -3,41 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUNO — Sites Premium sob Assinatura</title>
+    <title>DUNO — Locação de Sites de Elite</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Sora:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Design System Tokens */
-            --color-bg: #080810;
-            --color-surface: #0f0f1a;
-            --color-surface-2: #161624;
-            --color-border: rgba(255,255,255,0.08);
-            --color-border-hover: rgba(255,255,255,0.15);
+            --color-bg: #050508;
+            --color-surface: #0a0a12;
+            --color-surface-2: #121220;
+            --color-border: rgba(255, 255, 255, 0.08);
             --gradient-brand: linear-gradient(135deg, #FF3CAC 0%, #7928CA 50%, #2563EB 100%);
-            --gradient-brand-subtle: linear-gradient(135deg, rgba(255,60,172,0.15) 0%, rgba(121,40,202,0.12) 50%, rgba(37,99,235,0.1) 100%);
+            --gradient-glow: radial-gradient(circle at center, rgba(121, 40, 202, 0.15) 0%, transparent 70%);
             
             --font-display: 'Sora', sans-serif;
             --font-body: 'DM Sans', sans-serif;
             
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-            --radius-xl: 28px;
-            
-            --section-gap: 120px;
-            --container: 1240px;
-            
-            --transition: cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            --radius-lg: 24px;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* Base Reset */
+        /* Base & Noise */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        html { scroll-behavior: smooth; }
         body { 
             background-color: var(--color-bg); 
             color: white; 
@@ -46,627 +36,297 @@
             line-height: 1.6;
         }
 
-        /* Noise Texture Layer */
         body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 9999;
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.02; pointer-events: none; z-index: 9999;
         }
 
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        section { padding: 140px 0; position: relative; }
+
         /* Typography */
-        h1, h2, h3, .font-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; }
-        p { opacity: 0.8; }
-
-        .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: var(--section-gap) 0; }
-
-        /* Shared Components */
+        h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.04em; line-height: 1.1; }
         .gradient-text {
-            background: var(--gradient-brand);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: var(--gradient-brand); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* Components */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(121, 40, 202, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(121, 40, 202, 0.1);
+            transform: translateY(-5px);
         }
 
         .btn {
             display: inline-flex; align-items: center; justify-content: center;
-            border-radius: var(--radius-sm); padding: 14px 28px;
-            font-weight: 600; text-decoration: none; cursor: pointer;
-            transition: all var(--transition); border: none; font-size: 15px;
+            height: 58px; padding: 0 42px; border-radius: 14px;
+            font-weight: 700; text-decoration: none; transition: var(--transition);
+            border: none; cursor: pointer; font-size: 16px;
         }
         .btn-primary { 
             background: var(--gradient-brand); color: white;
+            box-shadow: 0 10px 30px rgba(121, 40, 202, 0.3);
         }
-        .btn-primary:hover { 
-            transform: scale(1.02); 
-            box-shadow: 0 8px 32px rgba(121,40,202,0.4); 
-        }
-        .btn-secondary {
-            background: transparent; border: 1px solid rgba(255,255,255,0.2); color: white;
-        }
-        .btn-secondary:hover {
-            border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.04);
-        }
+        .btn-primary:hover { transform: scale(1.03); box-shadow: 0 20px 50px rgba(121, 40, 202, 0.5); }
+        .btn-ghost { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: white; }
 
         /* Navbar */
         .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; height: 80px;
-            background: rgba(8,8,16,0.85); backdrop-filter: blur(20px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 90px;
+            background: rgba(5, 5, 8, 0.7); backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--color-border); z-index: 1000;
+            display: flex; align-items: center;
         }
-        .nav-inner { height: 100%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links { display: none; gap: 32px; }
-        .nav-links a { color: white; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.7; transition: 0.2s; }
-        .nav-links a:hover { opacity: 1; }
+        .nav-inner { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: none; gap: 40px; }
+        .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: white; text-shadow: 0 0 15px rgba(255,255,255,0.5); }
         @media (min-width: 1024px) { .nav-links { display: flex; } }
 
         /* Hero */
         .hero { 
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; overflow: hidden;
-            padding-top: 100px;
+            text-align: center; padding-top: 220px;
+            background: radial-gradient(circle at center, rgba(121, 40, 202, 0.08) 0%, transparent 60%);
         }
-        .mesh-glow {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,60,172,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(37,99,235,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(121,40,202,0.05) 0%, transparent 50%);
-            filter: blur(100px);
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 8px 20px; background: rgba(255, 60, 172, 0.05);
+            border: 1px solid rgba(255, 60, 172, 0.2); border-radius: 100px;
+            color: #FF3CAC; font-size: 12px; font-weight: 800; letter-spacing: 0.1em;
+            text-transform: uppercase; margin-bottom: 32px;
         }
-        .hero-inner { max-width: 760px; }
-        .eyebrow {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 16px; border-radius: 100px;
-            background: var(--gradient-brand-subtle); border: 1px solid rgba(121,40,202,0.2);
-            font-size: 13px; font-weight: 600; margin-bottom: 24px;
-        }
-        .hero h1 { font-size: clamp(48px, 8vw, 72px); line-height: 1.1; margin-bottom: 24px; }
-        .hero p { font-size: 18px; opacity: 0.7; margin-bottom: 40px; }
-
-        /* Social Proof Marquee */
-        .marquee-section { background: var(--color-surface); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 40px 0; }
-        .marquee-container { overflow: hidden; white-space: nowrap; display: flex; }
-        .marquee-content { display: flex; gap: 60px; animation: scroll 40s linear infinite; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .brand-item { display: flex; align-items: center; gap: 12px; font-weight: 700; font-family: var(--font-display); opacity: 0.4; font-size: 18px; }
-        .brand-item svg { width: 24px; height: 24px; fill: currentColor; }
-
-        /* Cards Style */
-        .card {
-            background: var(--color-surface); border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg); transition: all var(--transition);
-        }
-        .card:hover { border-color: var(--color-border-hover); background: rgba(255,255,255,0.02); }
-
-        /* Problem Section */
-        .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 60px; }
-        .problem-card { padding: 48px; border: 1px dashed rgba(255,255,255,0.1); background: transparent; }
-        .problem-card .icon { font-size: 32px; margin-bottom: 24px; color: #ff5f5f; }
-        .problem-card h3 { font-size: 20px; margin-bottom: 16px; }
-        .problem-card p { font-size: 15px; }
+        .hero h1 { font-size: clamp(48px, 9vw, 84px); margin-bottom: 24px; }
+        .hero p { font-size: 20px; color: rgba(255,255,255,0.6); max-width: 700px; margin: 0 auto 48px; }
 
         /* Portfolio */
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; margin-top: 60px; }
+        .portfolio-grid { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); margin-top: 80px; }
         .portfolio-card { 
-            position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 16/10;
-            background: var(--color-surface-2);
+            height: 480px; position: relative; overflow: hidden; border-radius: var(--radius-lg);
+            background: var(--color-surface); border: 1px solid var(--color-border);
         }
-        .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .portfolio-card:hover img { transform: scale(1.05); }
-        .portfolio-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 60%);
-            padding: 32px; display: flex; flex-direction: column; justify-content: flex-end;
+        .portfolio-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
+        .portfolio-card:hover img { transform: scale(1.1) rotate(1deg); filter: brightness(0.4); }
+        .card-content {
+            position: absolute; inset: 0; padding: 40px;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            background: linear-gradient(0deg, rgba(5,5,8,0.9) 0%, transparent 60%);
+            transition: 0.4s;
         }
-        .portfolio-card .badge {
-            position: absolute; top: 20px; left: 20px;
-            padding: 4px 12px; border-radius: 100px; background: var(--gradient-brand);
-            font-size: 11px; font-weight: 700; text-transform: uppercase;
+        .card-tag { 
+            position: absolute; top: 30px; left: 30px; padding: 6px 14px;
+            background: var(--gradient-brand); border-radius: 8px;
+            font-size: 11px; font-weight: 800; text-transform: uppercase;
         }
-        .portfolio-card .btn-view {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            opacity: 0; transition: 0.3s;
-        }
-        .portfolio-card:hover .btn-view { opacity: 1; transform: translate(-50%, -60%); }
-        .portfolio-card:hover { box-shadow: 0 20px 60px rgba(121,40,202,0.25); }
+        .card-details { transform: translateY(20px); opacity: 0; transition: 0.4s; }
+        .portfolio-card:hover .card-details { transform: translateY(0); opacity: 1; }
 
-        /* Features */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 60px; }
-        .feature-card { padding: 40px; border: 1px solid rgba(255,255,255,0.07); }
-        .feature-card .icon { width: 40px; height: 40px; margin-bottom: 20px; }
-        .feature-card h3 { font-size: 16px; margin-bottom: 12px; }
-        .feature-card p { font-size: 14px; opacity: 0.6; }
+        /* Problem Section */
+        .problem-grid { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin-top: 80px; }
+        .problem-card { padding: 50px; text-align: left; }
+        .problem-icon { width: 60px; height: 60px; background: rgba(255,60,60,0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; font-size: 24px; color: #FF3CAC; }
 
-        /* Comparison */
-        .comparison-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 60px; }
-        .comp-card { padding: 48px; position: relative; }
-        .comp-card.traditional { border: 1px dashed rgba(255,60,60,0.2); background: #0f0f1a; }
-        .comp-card.duno { border: 1px solid #7928CA; background: var(--gradient-brand-subtle); }
-        .comp-card h3 { font-size: 24px; margin-bottom: 32px; display: flex; align-items: center; gap: 12px; }
-        .comp-list { list-style: none; }
-        .comp-list li { margin-bottom: 16px; font-size: 15px; display: flex; align-items: center; gap: 12px; opacity: 0.8; }
-        .comp-list .icon-x { color: #ff5f5f; }
-        .comp-list .icon-check { color: #5fff8a; }
-        .comp-card.duno .recom-badge {
-            position: absolute; top: -14px; right: 48px;
-            padding: 6px 16px; background: var(--gradient-brand); border-radius: 100px;
-            font-size: 12px; font-weight: 700;
+        /* Pricing Card */
+        .pricing-card {
+            max-width: 500px; margin: 0 auto; padding: 70px 50px;
+            border: 2px solid transparent; background: linear-gradient(var(--color-bg), var(--color-bg)) padding-box, var(--gradient-brand) border-box;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 30px rgba(121, 40, 202, 0.2);
         }
+        .price-tag { font-size: 82px; font-weight: 800; line-height: 1; margin: 30px 0; }
 
-        /* Pricing */
-        .pricing-section { position: relative; }
-        .pricing-glow {
-            position: absolute; width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(121,40,202,0.15) 0%, transparent 70%); z-index: -1; filter: blur(80px);
-        }
-        .pricing-card { 
-            max-width: 480px; margin: 0 auto; padding: 60px; text-align: center;
-            border: 1px solid #7928CA; box-shadow: 0 0 40px rgba(121,40,202,0.15);
-        }
-        .price-label { font-size: 12px; font-weight: 700; color: #FF3CAC; margin-bottom: 24px; letter-spacing: 2px; }
-        .price-old { text-decoration: line-through; opacity: 0.4; font-size: 18px; display: block; margin-bottom: 8px; }
-        .price-current { font-size: 52px; font-weight: 800; line-height: 1; }
-        .price-list { text-align: left; margin: 40px 0; list-style: none; }
-        .price-list li { margin-bottom: 16px; display: flex; align-items: center; gap: 12px; font-size: 15px; }
+        /* FAQ */
+        .faq-item { margin-bottom: 16px; border-radius: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--color-border); }
+        .faq-trigger { width: 100%; padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: white; font-size: 18px; font-weight: 700; cursor: pointer; text-align: left; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: 0.5s ease; opacity: 0; padding: 0 32px; color: rgba(255,255,255,0.5); }
+        .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 32px; opacity: 1; }
+        .faq-item.active { border-color: #7928CA; background: rgba(121, 40, 202, 0.05); }
 
-        /* FAQ Accordion */
-        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 0 40px; margin-top: 60px; }
-        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
-        .faq-question {
-            width: 100%; padding: 24px 0; background: none; border: none;
-            display: flex; justify-content: space-between; align-items: center;
-            color: white; font-size: 18px; font-weight: 600; cursor: pointer; text-align: left;
-        }
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.4s; opacity: 0; padding-bottom: 24px; color: rgba(255,255,255,0.6); font-size: 15px; }
-        .faq-item.active .faq-answer { max-height: 200px; opacity: 1; }
-        .faq-icon { transition: 0.4s; opacity: 0.4; }
-        .faq-item.active .faq-icon { transform: rotate(180deg); opacity: 1; }
-
-        /* Final CTA */
-        .cta-final { 
-            background: linear-gradient(135deg, rgba(255,60,172,0.1) 0%, rgba(37,99,235,0.1) 100%);
-            border-top: 1px solid rgba(121,40,202,0.3); text-align: center;
-        }
-
-        /* Animations */
-        .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease-out; }
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.23, 1, 0.32, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* FAB WhatsApp */
+        /* WhatsApp FAB */
         .whatsapp-fab {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
+            position: fixed; bottom: 40px; right: 40px; width: 70px; height: 70px;
             background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            z-index: 1000; box-shadow: 0 10px 30px rgba(37,211,102,0.3);
-            animation: pulse 2s infinite; cursor: pointer;
+            z-index: 1000; box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(37,211,102,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
-        /* Responsive Fixes */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 40px; }
-            .section-padding { padding: 80px 0; }
-            .portfolio-grid { grid-template-columns: 1fr; }
-            .faq-grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="container nav-inner">
-            <a href="#" style="text-decoration: none; display: flex; align-items: center; gap: 8px;">
-                <div style="font-weight: 900; font-size: 24px; font-family: var(--font-display); letter-spacing: -1.5px;">DUNO<span class="gradient-text">.</span></div>
-            </a>
+            <div style="font-weight: 800; font-size: 28px; letter-spacing: -2px;">DUNO<span class="gradient-text">.</span></div>
             <div class="nav-links">
-                <a href="#portfolio">Catálogo</a>
-                <a href="#features">Recursos</a>
-                <a href="#depoimentos">Depoimentos</a>
+                <a href="#portfolio">Projetos</a>
+                <a href="#problema">Por que nós?</a>
+                <a href="#oferta">Planos</a>
                 <a href="#faq">Dúvidas</a>
             </div>
-            <a href="https://wa.me/5511900000000" class="btn btn-primary" style="padding: 10px 24px; font-size: 14px;">Quero Meu Site</a>
+            <a href="https://wa.me/5511900000000" class="btn btn-primary" style="height: 48px; padding: 0 28px; font-size: 14px;">Consultoria</a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="mesh-glow"></div>
-        <div class="container hero-inner reveal">
-            <div class="eyebrow">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                Sites que geram faturamento real
-            </div>
-            <h1>Pare de perder clientes para concorrentes com <span class="gradient-text">site melhor.</span></h1>
-            <p>Tenha um site profissional de alto nível por R$197/mês. <br> Sem investimento alto. Sem risco. Cancele quando quiser.</p>
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="#oferta" class="btn btn-primary" style="padding: 18px 48px; border-radius: 12px; font-size: 17px;">Quero Meu Site Agora</a>
-                <a href="#portfolio" class="btn btn-secondary" style="padding: 18px 48px; border-radius: 12px; font-size: 17px;">Ver portfólio →</a>
-            </div>
-            <div style="margin-top: 48px; display: flex; align-items: center; justify-content: center; gap: 16px;">
-                <div style="display: flex; margin-right: 8px;">
-                    <img src="https://i.pravatar.cc/40?u=1" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--color-bg); margin-right: -12px;">
-                    <img src="https://i.pravatar.cc/40?u=2" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--color-bg); margin-right: -12px;">
-                    <img src="https://i.pravatar.cc/40?u=3" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--color-bg); margin-right: -12px;">
-                    <img src="https://i.pravatar.cc/40?u=4" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--color-bg); margin-right: -12px;">
-                    <img src="https://i.pravatar.cc/40?u=5" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--color-bg);">
-                </div>
-                <div style="text-align: left;">
-                    <div style="color: #FFD700; font-size: 12px;">★★★★★</div>
-                    <div style="font-size: 12px; opacity: 0.6;">+420 empresas faturando com a DUNO</div>
+    <main>
+        <!-- HERO -->
+        <section class="hero reveal">
+            <div class="container">
+                <div class="hero-badge">🚀 Domine seu Mercado Digital</div>
+                <h1>Aparência de <span class="gradient-text">Elite.</span> <br> Faturamento de <span class="gradient-text">Mestre.</span></h1>
+                <p>Nós construímos o site que sua empresa merece em até 7 dias. Sem custos de desenvolvimento, apenas resultados exponenciais.</p>
+                <div style="display: flex; justify-content: center; gap: 24px;">
+                    <a href="#oferta" class="btn btn-primary">Começar Agora</a>
+                    <a href="#portfolio" class="btn btn-ghost">Ver Portfólio</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- MARQUEE LOGO BAR -->
-    <section class="marquee-section">
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <div class="brand-item">Clínica Sorriso</div>
-                <div class="brand-item">Studio Vitale</div>
-                <div class="brand-item">Dr. Marcos Lima</div>
-                <div class="brand-item">Advocacia Elite</div>
-                <div class="brand-item">Luxo Imobiliária</div>
-                <div class="brand-item">Hamburgueria Pro</div>
-                <div class="brand-item">Clínica Sorriso</div>
-                <div class="brand-item">Studio Vitale</div>
-                <div class="brand-item">Dr. Marcos Lima</div>
-                <div class="brand-item">Advocacia Elite</div>
-                <div class="brand-item">Luxo Imobiliária</div>
-                <div class="brand-item">Hamburgueria Pro</div>
+        <!-- PROBLEMA -->
+        <section id="problema" style="background: rgba(255,255,255,0.01);">
+            <div class="container reveal">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
+                    <h2>Seu site é seu cartão de visitas <span class="gradient-text">ou seu maior prejuízo?</span></h2>
+                </div>
+                <div class="problem-grid">
+                    <div class="glass-card problem-card">
+                        <div class="problem-icon">📉</div>
+                        <h3 style="margin-bottom: 15px;">Baixa Conversão</h3>
+                        <p style="font-size: 15px; opacity: 0.6;">Visitantes entram e saem sem clicar em nada? Seu design está espantando o lucro.</p>
+                    </div>
+                    <div class="glass-card problem-card">
+                        <div class="problem-icon">🛑</div>
+                        <h3 style="margin-bottom: 15px;">Sem Autoridade</h3>
+                        <p style="font-size: 15px; opacity: 0.6;">Se o seu site parece barato, os clientes vão pedir desconto. Design de elite cobra caro.</p>
+                    </div>
+                    <div class="glass-card problem-card">
+                        <div class="problem-icon">🐌</div>
+                        <h3 style="margin-bottom: 15px;">Lentidão Fatal</h3>
+                        <p style="font-size: 15px; opacity: 0.6;">Cada segundo de carregamento é uma venda perdida. Nós entregamos sites em 60 FPS.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- O PROBLEMA -->
-    <section class="section-padding">
-        <div class="container reveal">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-                <h2 style="margin-bottom: 20px;">Seu concorrente está faturando mais — <br><span class="gradient-text">e o site dele é o motivo.</span></h2>
-                <p>97% dos consumidores julgam a credibilidade de uma empresa pelo site. Se o seu não passa confiança, você perde clientes antes de falar 'olá'.</p>
-            </div>
-            <div class="problem-grid">
-                <div class="card problem-card">
-                    <div class="icon">⚠️</div>
-                    <h3>Parece amador</h3>
-                    <p>73% dos usuários abandonam sites lentos e mal diagramados. Seu site está espantando clientes?</p>
+        <!-- PORTFOLIO -->
+        <section id="portfolio">
+            <div class="container">
+                <div style="text-align: center;" class="reveal">
+                    <h2>9 <span class="gradient-text">Projetos de Elite</span> Disponíveis</h2>
+                    <p style="margin-top: 15px; color: rgba(255,255,255,0.5);">Selecione o modelo validado para o seu nicho.</p>
                 </div>
-                <div class="card problem-card">
-                    <div class="icon">📉</div>
-                    <h3>Não converte</h3>
-                    <p>Ter visitas não adianta nada se ninguém clica no botão do WhatsApp. Design estratégico faz vender.</p>
-                </div>
-                <div class="card problem-card">
-                    <div class="icon">⏰</div>
-                    <h3>Fica desatualizado</h3>
-                    <p>Um site de 2019 não funciona em 2026. Nossa assinatura garante que você nunca envelheça digitalmente.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="section-padding" style="background: rgba(255,255,255,0.01);">
-        <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2>Nossos 9 Projetos de <span class="gradient-text">Elite</span></h2>
-                <p>Estruturas validadas para dominar seu nicho de mercado.</p>
-            </div>
-            <div class="portfolio-grid">
-                <script>
-                    const niches = [
-                        { name: 'Odontologia', img: '51' },
-                        { name: 'Estética Premium', img: '52' },
-                        { name: 'Advocacia Business', img: '53' },
-                        { name: 'E-commerce Luxo', img: '54' },
-                        { name: 'Imobiliária Pro', img: '55' },
-                        { name: 'Saúde Digital', img: '56' },
-                        { name: 'Hamburgeria Pro', img: '57' },
-                        { name: 'IA / Tech', img: '58' },
-                        { name: 'Cirurgia Médica', img: '59' }
-                    ];
-                    niches.forEach(n => {
-                        document.write(`
-                        <div class="portfolio-card card">
-                            <div class="badge">${n.name}</div>
-                            <img src="https://picsum.photos/seed/${n.img}/800/500" alt="${n.name}">
-                            <div class="portfolio-overlay">
-                                <h3 style="font-size: 20px; margin-bottom: 4px;">Projeto ${n.name}</h3>
-                                <p style="font-size: 13px; opacity: 0.7;">Foco em Conversão Digital</p>
+                <div class="portfolio-grid reveal">
+                    <script>
+                        const niches = [
+                            { n: 'Saúde Digital', t: 'MEDICINA' },
+                            { n: 'Advocacia Business', t: 'LAW' },
+                            { n: 'Estética Premium', t: 'BEAUTY' },
+                            { n: 'E-commerce Luxo', t: 'SHOP' },
+                            { n: 'Imobiliária Pro', t: 'REAL ESTATE' },
+                            { n: 'Gastronomia Gourmet', t: 'FOOD' },
+                            { n: 'SaaS / Tech', t: 'SOFTWARE' },
+                            { n: 'Mentoria Elite', t: 'COACHING' },
+                            { n: 'Finanças Pro', t: 'FINANCE' }
+                        ];
+                        niches.forEach((x, i) => {
+                            document.write(`
+                            <div class="portfolio-card">
+                                <div class="card-tag">${x.t}</div>
+                                <img src="https://picsum.photos/seed/${i+100}/800/600" alt="${x.n}">
+                                <div class="card-content">
+                                    <div class="card-details">
+                                        <h3 style="font-size: 24px; margin-bottom: 15px;">${x.n}</h3>
+                                        <a href="https://wa.me/5511900000000" class="btn btn-primary" style="height: 44px; padding: 0 20px; font-size: 13px;">Alugar Este Modelo</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="btn btn-primary btn-view">Ver Projeto →</div>
-                        </div>
-                        `);
-                    });
-                </script>
+                            `);
+                        });
+                    </script>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FEATURES -->
-    <section id="features" class="section-padding">
-        <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2>Desenvolvido para converter, <br><span class="gradient-text">não apenas impressionar.</span></h2>
-            </div>
-            <div class="features-grid">
-                <div class="card feature-card">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#FF3CAC" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                    <h3>Layouts 60 FPS</h3>
-                    <p>Performance otimizada para carregamento instantâneo em qualquer dispositivo.</p>
-                </div>
-                <div class="card feature-card">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7928CA" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    <h3>Suporte Humanizado</h3>
-                    <p>Equipe disponível em minutos via WhatsApp para qualquer ajuste ou dúvida.</p>
-                </div>
-                <div class="card feature-card">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                    <h3>Fácil Edição</h3>
-                    <p>Você mesmo atualiza textos e fotos sem precisar entender de programação.</p>
-                </div>
-                <div class="card feature-card">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#FF3CAC" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-                    <h3>Atualizações Mensais</h3>
-                    <p>Renovação constante inclusa no plano. Seu site nunca fica velho.</p>
-                </div>
-                <div class="card feature-card">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7928CA" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    <h3>Entrega em 7 dias</h3>
-                    <p>Site no ar em uma semana, garantido ou seu dinheiro de volta.</p>
-                </div>
-                <div class="card feature-card">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                    <h3>SEO Amigável</h3>
-                    <p>Estrutura otimizada para o Google desde o primeiro dia de lançamento.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMPARAÇÃO -->
-    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
-        <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2>Por que nosso modelo ganha em <span class="gradient-text">todos os aspectos?</span></h2>
-            </div>
-            <div class="comparison-container">
-                <div class="card comp-card traditional">
-                    <h3>Agência Tradicional</h3>
-                    <ul class="comp-list">
-                        <li><span class="icon-x">✘</span> R$5.000–30.000 de investimento</li>
-                        <li><span class="icon-x">✘</span> Prazo de 30 a 90 dias</li>
-                        <li><span class="icon-x">✘</span> Alto risco, nenhuma garantia</li>
-                        <li><span class="icon-x">✘</span> Suporte pós-entrega pago à parte</li>
-                        <li><span class="icon-x">✘</span> Site que envelhece sem updates</li>
+        <!-- OFERTA -->
+        <section id="oferta" style="background: radial-gradient(circle at center, rgba(121, 40, 202, 0.05) 0%, transparent 100%);">
+            <div class="container reveal">
+                <div class="glass-card pricing-card">
+                    <div class="hero-badge">💎 Oferta Exclusiva</div>
+                    <h2 style="margin-top: 20px;">Plano Black Signature</h2>
+                    <div class="price-tag gradient-text">R$ 197<span style="font-size: 22px; opacity: 0.5;">/mês</span></div>
+                    <ul style="list-style: none; text-align: left; margin-bottom: 48px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px;">
+                        <li style="margin-bottom: 15px;">⭐ +40 Templates de Alta Performance</li>
+                        <li style="margin-bottom: 15px;">📱 Layout Ultra-Responsivo</li>
+                        <li style="margin-bottom: 15px;">💬 Suporte VIP no WhatsApp</li>
+                        <li style="margin-bottom: 15px;">🔄 Atualizações Mensais Inclusas</li>
                     </ul>
-                </div>
-                <div class="card comp-card duno">
-                    <div class="recom-badge">Recomendado</div>
-                    <h3>Modelo DUNO</h3>
-                    <ul class="comp-list">
-                        <li><span class="icon-check">✔</span> R$197/mês (zero setup)</li>
-                        <li><span class="icon-check">✔</span> Site no ar em 7 dias</li>
-                        <li><span class="icon-check">✔</span> Cancele quando quiser</li>
-                        <li><span class="icon-check">✔</span> Suporte via WhatsApp incluso</li>
-                        <li><span class="icon-check">✔</span> Atualizações mensais inclusas</li>
-                    </ul>
+                    <a href="https://wa.me/5511900000000" class="btn btn-primary" style="width: 100%;">Assinar Agora</a>
+                    <p style="margin-top: 24px; font-size: 12px; opacity: 0.4;">Cancele quando quiser. Sem letras miúdas.</p>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 40px; opacity: 0.5; font-size: 14px;">"Com 1 único cliente novo, o site já se paga."</div>
-        </div>
-    </section>
+        </section>
 
-    <!-- DEPOIMENTOS -->
-    <section id="depoimentos" class="section-padding">
-        <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2>O que dizem <span class="gradient-text">nossos clientes</span></h2>
-            </div>
-            <div class="problem-grid">
-                <div class="card problem-card" style="border-style: solid; padding: 40px;">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <img src="https://i.pravatar.cc/44?u=10" style="border-radius: 50%;">
-                        <div>
-                            <div style="font-weight: 700; font-size: 14px;">Dra. Ana Frade</div>
-                            <div style="font-size: 12px; opacity: 0.6;">Dentista</div>
-                        </div>
-                    </div>
-                    <div style="color: #FFD700; margin-bottom: 12px;">★★★★★</div>
-                    <p style="font-style: italic;">"Fiz R$8.400 no primeiro mês com o site novo. Não esperava tão rápido."</p>
+        <!-- FAQ -->
+        <section id="faq">
+            <div class="container reveal">
+                <div style="text-align: center; margin-bottom: 80px;">
+                    <h2>Dúvidas <span class="gradient-text">Frequentes</span></h2>
                 </div>
-                <div class="card problem-card" style="border-style: solid; padding: 40px;">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <img src="https://i.pravatar.cc/44?u=11" style="border-radius: 50%;">
-                        <div>
-                            <div style="font-weight: 700; font-size: 14px;">Carlos Lima</div>
-                            <div style="font-size: 12px; opacity: 0.6;">Advogado</div>
-                        </div>
-                    </div>
-                    <div style="color: #FFD700; margin-bottom: 12px;">★★★★★</div>
-                    <p style="font-style: italic;">"Em 48h já recebi 3 mensagens de clientes pelo site. Inacreditável."</p>
-                </div>
-                <div class="card problem-card" style="border-style: solid; padding: 40px;">
-                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                        <img src="https://i.pravatar.cc/44?u=12" style="border-radius: 50%;">
-                        <div>
-                            <div style="font-weight: 700; font-size: 14px;">Rodrigo Souza</div>
-                            <div style="font-size: 12px; opacity: 0.6;">Estética</div>
-                        </div>
-                    </div>
-                    <div style="color: #FFD700; margin-bottom: 12px;">★★★★★</div>
-                    <p style="font-style: italic;">"Meu concorrente tem site igual ao que eu tinha antes. Agora eu ganho na aparência."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESSO -->
-    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
-        <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 80px;">
-                <h2>Do zero ao faturamento em <span class="gradient-text">3 passos simples</span></h2>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
-                <div style="position: relative;">
-                    <div style="font-size: 80px; font-weight: 900; color: #7928CA; opacity: 0.1; position: absolute; top: -40px; left: 0;">01</div>
-                    <h3 style="margin-bottom: 12px;">Escolha o Modelo</h3>
-                    <p style="font-size: 14px;">Navegue pelo nosso catálogo de elite e indique o estilo que mais combina com seu negócio.</p>
-                </div>
-                <div style="position: relative;">
-                    <div style="font-size: 80px; font-weight: 900; color: #7928CA; opacity: 0.1; position: absolute; top: -40px; left: 0;">02</div>
-                    <h3 style="margin-bottom: 12px;">Envie seus Dados</h3>
-                    <p style="font-size: 14px;">Você envia os textos básicos e fotos, e a equipe da DUNO cuida de toda a montagem técnica.</p>
-                </div>
-                <div style="position: relative;">
-                    <div style="font-size: 80px; font-weight: 900; color: #7928CA; opacity: 0.1; position: absolute; top: -40px; left: 0;">03</div>
-                    <h3 style="margin-bottom: 12px;">Comece a Faturar</h3>
-                    <p style="font-size: 14px;">Em apenas 7 dias úteis seu site estará no ar e pronto para gerar novos contatos e vendas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- OFERTA -->
-    <section id="oferta" class="section-padding pricing-section">
-        <div class="pricing-glow"></div>
-        <div class="container reveal">
-            <div class="card pricing-card">
-                <div class="price-label">ACESSO IMEDIATO</div>
-                <span class="price-old">De R$497/mês</span>
-                <div class="price-current gradient-text">R$197<span style="font-size: 18px; opacity: 0.5;">/mês</span></div>
-                <p style="font-weight: 700; color: #FF3CAC; margin-top: 12px;">Equivale a apenas R$ 6,57/dia</p>
-                <ul class="price-list">
-                    <li><span class="gradient-text">✔</span> 40+ Templates Premium</li>
-                    <li><span class="gradient-text">✔</span> Atualizações Vitalícias</li>
-                    <li><span class="gradient-text">✔</span> Suporte Prioritário</li>
-                    <li><span class="gradient-text">✔</span> Garantia de 7 dias</li>
-                    <li><span class="gradient-text">✔</span> Sem contrato anual</li>
-                </ul>
-                <a href="https://wa.me/5511900000000" class="btn btn-primary" style="width: 100%; border-radius: 12px; padding: 18px;">Quero Acesso Imediato</a>
-                <div style="font-size: 12px; opacity: 0.5; margin-top: 20px;">Versão gratuita disponível para demonstração</div>
-                <div style="margin-top: 24px; display: flex; justify-content: center; gap: 12px; opacity: 0.4; font-size: 11px;">
-                    <span>🔒 Pagamento Seguro</span>
-                    <span>🛡️ Cancele quando quiser</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section-padding">
-        <div class="container reveal">
-            <div style="text-align: center; margin-bottom: 60px;">
-                <h2>Perguntas <span class="gradient-text">Frequentes</span></h2>
-            </div>
-            <div class="faq-grid">
-                <div>
+                <div style="max-width: 900px; margin: 0 auto;">
                     <div class="faq-item">
-                        <button class="faq-question">Posso cancelar quando quiser? <span class="faq-icon">⌄</span></button>
-                        <div class="faq-answer">Sim, nosso modelo é de assinatura mensal sem fidelidade. Você cancela quando quiser, sem qualquer multa ou burocracia.</div>
+                        <button class="faq-trigger">Como recebo o acesso? <span style="font-size: 24px;">+</span></button>
+                        <div class="faq-answer">Imediatamente após a confirmação, nossa equipe entra em contato via WhatsApp para configurar seu novo site.</div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question">Quanto tempo para ficar pronto? <span class="faq-icon">⌄</span></button>
-                        <div class="faq-answer">Seu site estará no ar e funcional em até 7 dias úteis após o envio dos seus materiais básicos.</div>
+                        <button class="faq-trigger">Preciso pagar hospedagem? <span style="font-size: 24px;">+</span></button>
+                        <div class="faq-answer">Não. A hospedagem premium já está inclusa na sua assinatura mensal.</div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question">Preciso saber programar? <span class="faq-icon">⌄</span></button>
-                        <div class="faq-answer">De forma alguma. Nós entregamos o link pronto e você só precisa compartilhar com seus clientes.</div>
-                    </div>
-                </div>
-                <div>
-                    <div class="faq-item">
-                        <button class="faq-question">E se eu não gostar do resultado? <span class="faq-icon">⌄</span></button>
-                        <div class="faq-answer">Oferecemos 7 dias de garantia total. Se você não ficar satisfeito, devolvemos 100% do valor da assinatura.</div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">O site aparece no Google? <span class="faq-icon">⌄</span></button>
-                        <div class="faq-answer">Sim, toda a estrutura é construída com as melhores práticas de SEO para facilitar sua indexação no Google.</div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">Quais formas de pagamento? <span class="faq-icon">⌄</span></button>
-                        <div class="faq-answer">Aceitamos Cartão de Crédito, PIX e Boleto Bancário para sua total comodidade.</div>
+                        <button class="faq-trigger">Posso mudar o modelo depois? <span style="font-size: 24px;">+</span></button>
+                        <div class="faq-answer">Sim! Você pode solicitar a troca do seu modelo uma vez a cada 3 meses sem custos adicionais.</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- CTA FINAL -->
-    <section class="section-padding cta-final">
-        <div class="container reveal">
-            <h2 style="font-size: clamp(32px, 5vw, 48px); margin-bottom: 24px;">Pronto para ter um site que vende <br><span class="gradient-text">enquanto você dorme?</span></h2>
-            <p style="margin-bottom: 40px;">Mais de 420 empresas já confiam na DUNO. Seja a próxima.</p>
-            <a href="#oferta" class="btn btn-primary" style="padding: 18px 60px; font-size: 18px; border-radius: 12px;">Quero Meu Site Agora</a>
-            <div style="margin-top: 40px; display: flex; justify-content: center; gap: 32px; opacity: 0.5; font-size: 13px;">
-                <span>✓ Compra Segura</span>
-                <span>✓ Suporte 24/7</span>
-                <span>✓ 7 Dias Garantia</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer style="padding: 80px 0 40px; background: #050508;">
-        <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 60px; margin-bottom: 60px;">
-                <div>
-                    <div style="font-weight: 900; font-size: 24px; font-family: var(--font-display); letter-spacing: -1.5px; margin-bottom: 20px;">DUNO<span class="gradient-text">.</span></div>
-                    <p style="font-size: 14px; opacity: 0.5;">Design de autoridade focado em converter visitantes em faturamento real para o seu negócio.</p>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px; font-size: 16px;">Plataforma</h4>
-                    <ul style="list-style: none; font-size: 14px; opacity: 0.6; line-height: 2.5;">
-                        <li><a href="#portfolio" style="color: white; text-decoration: none;">Catálogo</a></li>
-                        <li><a href="#oferta" style="color: white; text-decoration: none;">Planos</a></li>
-                        <li><a href="#faq" style="color: white; text-decoration: none;">Dúvidas</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px; font-size: 16px;">Suporte</h4>
-                    <ul style="list-style: none; font-size: 14px; opacity: 0.6; line-height: 2.5;">
-                        <li>WhatsApp</li>
-                        <li>Email: contato@duno.com.br</li>
-                        <li>Termos de Uso</li>
-                    </ul>
-                </div>
-            </div>
-            <div style="padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 13px; opacity: 0.3;">
-                © 2026 DUNO NEXUS. Todos os direitos reservados.
-            </div>
-        </div>
+    <footer style="padding: 80px 0 40px; border-top: 1px solid var(--color-border); text-align: center;">
+        <div style="font-weight: 800; font-size: 24px; margin-bottom: 20px;">DUNO<span class="gradient-text">.</span></div>
+        <p style="font-size: 14px; opacity: 0.4;">© 2026 DUNO NEXUS. Design de Autoridade Mundial.</p>
     </footer>
 
-    <!-- WHATSAPP FAB -->
     <a href="https://wa.me/5511900000000" class="whatsapp-fab" target="_blank">
         <svg width="34" height="34" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
 
     <script>
-        // Scroll Reveal Animation
-        const revealCallback = (entries) => {
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('active');
             });
-        };
-        const observer = new IntersectionObserver(revealCallback, { threshold: 0.15 });
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // FAQ Accordion Logic
-        document.querySelectorAll('.faq-question').forEach(btn => {
+        // FAQ
+        document.querySelectorAll('.faq-trigger').forEach(btn => {
             btn.addEventListener('click', () => {
-                const item = btn.parentElement;
-                item.classList.toggle('active');
+                btn.parentElement.classList.toggle('active');
             });
         });
     </script>
-
 </body>
 </html>
