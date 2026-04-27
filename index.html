@@ -217,26 +217,127 @@
             </div>
         </section>
 
+        <section id="depoimentos">
+            <div class="container">
+                <div style="text-align: center;" class="reveal">
+                    <div class="hero-badge" style="color: #FF007A; border-color: rgba(255, 0, 122, 0.3);">Prova Social</div>
+                    <h2>O que dizem <span class="highlight-gradient">nossos clientes</span></h2>
+                </div>
+                <div class="testimonial-grid reveal">
+                    <div class="testi-card">
+                        <div class="testi-header">
+                            <img src="https://i.pravatar.cc/150?u=11" class="testi-avatar" alt="Avatar">
+                            <div>
+                                <div class="testi-name">Marcos Silva</div>
+                                <div class="testi-nicho">Nichos de Delivery</div>
+                            </div>
+                        </div>
+                        <p style="font-size: 14px; color: var(--text-dim);">"Meu site saiu do ar em 2 dias e já gerou <strong>3 clientes no WhatsApp</strong>. O design de elite realmente filtra o público certo."</p>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-header">
+                            <img src="https://i.pravatar.cc/150?u=12" class="testi-avatar" alt="Avatar">
+                            <div>
+                                <div class="testi-name">Ana Paula</div>
+                                <div class="testi-nicho">Estética & Bem Estar</div>
+                            </div>
+                        </div>
+                        <p style="font-size: 14px; color: var(--text-dim);">"A percepção de valor do meu serviço mudou completamente. Os clientes já chegam respeitando meu preço."</p>
+                    </div>
+                    <div class="testi-card">
+                        <div class="testi-header">
+                            <img src="https://i.pravatar.cc/150?u=13" class="testi-avatar" alt="Avatar">
+                            <div>
+                                <div class="testi-name">Rodrigo Lima</div>
+                                <div class="testi-nicho">Consultoria SaaS</div>
+                            </div>
+                        </div>
+                        <p style="font-size: 14px; color: var(--text-dim);">"A conversão da minha LP <strong>dobrou</strong>. O DUNO Nexus não entrega um site, entrega uma máquina de autoridade."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="features">
             <div class="container">
                 <div style="text-align: center;" class="reveal">
-                    <h2>Diferenciação <span class="highlight-gradient">Brutal</span></h2>
+                    <div class="hero-badge">Diferenciais</div>
+                    <h2>Desenvolvido para <span class="highlight-gradient">converter</span></h2>
                 </div>
                 <div class="features-grid reveal">
                     <div class="feature-card">
                         <svg class="feature-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                         <h3 style="margin: 20px 0 12px; font-size: 20px;">Segurança Militar</h3>
-                        <p style="color: var(--text-dim); font-size: 14px;">Proteção total contra ataques e estabilidade 99.9% garantida em nuvem.</p>
+                        <p style="color: var(--text-dim); font-size: 14px;">Proteção total contra ataques e estabilidade 99.9% garantida em nuvem de alta performance.</p>
                     </div>
                     <div class="feature-card">
                         <svg class="feature-icon" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
                         <h3 style="margin: 20px 0 12px; font-size: 20px;">Velocidade 60 FPS</h3>
-                        <p style="color: var(--text-dim); font-size: 14px;">Carregamento instantâneo que o Google ama e seus clientes agradecem.</p>
+                        <p style="color: var(--text-dim); font-size: 14px;">Carregamento instantâneo. Google PageSpeed no verde para máxima autoridade.</p>
                     </div>
                     <div class="feature-card">
                         <svg class="feature-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        <h3 style="margin: 20px 0 12px; font-size: 20px;">Foco em Conversão</h3>
-                        <p style="color: var(--text-dim); font-size: 14px;">Layouts desenhados por psicólogos de consumo para maximizar cliques.</p>
+                        <h3 style="margin: 20px 0 12px; font-size: 20px;">Psicologia de Venda</h3>
+                        <p style="color: var(--text-dim); font-size: 14px;">Layouts baseados em neuromarketing para guiar o cliente até o botão de compra.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .faq-grid { display: grid; gap: 20px; grid-template-columns: repeat(1, 1fr); margin-top: 60px; }
+            @media (min-width: 768px) { .faq-grid { grid-template-columns: repeat(2, 1fr); } }
+            .faq-item { background: var(--bg-surface); border: var(--border-glass); border-radius: 16px; overflow: hidden; transition: var(--transition); }
+            .faq-item:hover { border-color: rgba(160, 32, 240, 0.4); background: rgba(255,255,255,0.05); }
+            .faq-trigger { width: 100%; padding: 24px; background: none; border: none; display: flex; justify-content: space-between; align-items: center; color: white; font-size: 16px; font-weight: 700; cursor: pointer; text-align: left; }
+            .faq-content { max-height: 0; overflow: hidden; transition: 400ms ease; opacity: 0; }
+            .faq-item.active .faq-content { max-height: 200px; padding: 0 24px 24px; opacity: 1; }
+            .faq-icon { transition: 300ms; color: #FF007A; font-size: 20px; }
+            .faq-item.active .faq-icon { transform: rotate(180deg); }
+        </style>
+
+        <section id="faq">
+            <div class="container">
+                <div style="text-align: center;" class="reveal">
+                    <div class="faq-badge"><span>?</span> Ficou com alguma dúvida?</div>
+                    <h2>Confira as <span class="highlight-gradient">perguntas frequentes</span></h2>
+                </div>
+                <div class="faq-grid reveal">
+                    <div class="faq-item">
+                        <button class="faq-trigger"><span>O que preciso para ter um site online?</span> <span class="faq-icon">⌄</span></button>
+                        <div class="faq-content">
+                            <p style="color: var(--text-dim); font-size: 14px;">Você só escolhe o modelo. Nós cuidamos de tudo: servidor, domínio e configuração técnica completa.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger"><span>E se eu tiver dúvidas?</span> <span class="faq-icon">⌄</span></button>
+                        <div class="faq-content">
+                            <p style="color: var(--text-dim); font-size: 14px;">Suporte direto via WhatsApp com especialistas. Sem robôs, atendimento humano de elite.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger"><span>Precisa de Elementor PRO?</span> <span class="faq-icon">⌄</span></button>
+                        <div class="faq-content">
+                            <p style="color: var(--text-dim); font-size: 14px;">Não! Entregamos a estrutura completa e pronta para uso dentro do nosso sistema de alocação.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger"><span>Quais as formas de pagamento?</span> <span class="faq-icon">⌄</span></button>
+                        <div class="faq-content">
+                            <p style="color: var(--text-dim); font-size: 14px;">Aceitamos PIX, Cartão de Crédito (até 12x) e Boleto Bancário.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger"><span>Como recebo o acesso?</span> <span class="faq-icon">⌄</span></button>
+                        <div class="faq-content">
+                            <p style="color: var(--text-dim); font-size: 14px;">Após o envio dos dados, nossa equipe configura e te entrega o site pronto em até 48 horas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-trigger"><span>Os sites são rápidos?</span> <span class="faq-icon">⌄</span></button>
+                        <div class="faq-content">
+                            <p style="color: var(--text-dim); font-size: 14px;">Sim. Otimização extrema para carregamento instantâneo, garantindo a menor taxa de rejeição possível.</p>
+                        </div>
                     </div>
                 </div>
             </div>
