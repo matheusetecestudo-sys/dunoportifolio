@@ -12,8 +12,8 @@
         :root {
             --bg-primary: #080808;
             --bg-secondary: #0E0E0E;
-            --accent-primary: #F5C400; /* Amarelo */
-            --accent-secondary: #C084FC; /* Roxo */
+            --grad-start: #FF007A;
+            --grad-end: #A020F0;
             --text-primary: #FFFFFF;
             --text-secondary: #999999;
             --border-card: 1px solid rgba(255, 255, 255, 0.06);
@@ -54,7 +54,7 @@
         }
         .nav-links { display: none; gap: 32px; }
         .nav-links a { color: var(--text-primary); text-decoration: none; font-size: 14px; font-weight: 600; transition: var(--transition); }
-        .nav-links a:hover { color: var(--accent-primary); }
+        .nav-links a:hover { background: linear-gradient(90deg, #FF007A, #A020F0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         @media (min-width: 1024px) { .nav-links { display: flex; } }
 
         /* Scroll Reveal Animation */
@@ -68,8 +68,8 @@
             font-size: 16px; font-weight: 700; text-decoration: none;
             transition: var(--transition); cursor: pointer; border: none;
         }
-        .btn-primary { background: var(--accent-primary); color: #0A0A0A; min-width: 280px; }
-        .btn-primary:hover { background: #FFD700; transform: scale(1.02); }
+        .btn-primary { background: linear-gradient(90deg, #FF007A 0%, #A020F0 100%); color: #FFFFFF; min-width: 280px; }
+        .btn-primary:hover { background: linear-gradient(90deg, #e6006e 0%, #8a00d4 100%); transform: scale(1.02); }
         .btn-ghost { background: transparent; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.1); }
         .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
@@ -90,9 +90,9 @@
         /* Hero */
         .hero { text-align: center; padding: 180px 0 120px; background: radial-gradient(circle at top, #151025 0%, #080808 60%); }
         .hero-badge { 
-            display: inline-flex; padding: 6px 16px; background: rgba(245, 196, 0, 0.1); 
-            border: 1px solid rgba(245, 196, 0, 0.3); border-radius: 99px; margin-bottom: 24px;
-            color: var(--accent-primary); font-weight: 600;
+            display: inline-flex; padding: 6px 16px; background: rgba(255, 0, 122, 0.08); 
+            border: 1px solid rgba(160, 32, 240, 0.4); border-radius: 99px; margin-bottom: 24px;
+            background-clip: unset; color: #FF007A; font-weight: 600;
         }
 
         /* Portfolio Grid */
@@ -135,12 +135,12 @@
         /* Pricing Section */
         .pricing-box { 
             max-width: 600px; margin: 60px auto; text-align: center; 
-            padding: 60px 40px; background: #0A0A0A; border: 1px solid rgba(245,196,0,0.2);
-            border-radius: 24px; box-shadow: 0 0 40px rgba(245,196,0,0.05);
+            padding: 60px 40px; background: #0A0A0A; border: 1px solid rgba(160, 32, 240, 0.3);
+            border-radius: 24px; box-shadow: 0 0 40px rgba(255, 0, 122, 0.08);
         }
         .price-anchor { text-decoration: line-through; opacity: 0.5; font-size: 20px; }
-        .price-main { font-size: clamp(48px, 8vw, 72px); font-weight: 700; color: var(--accent-primary); line-height: 1; }
-        .price-timer { margin-top: 24px; padding: 12px; background: rgba(245,196,0,0.1); color: var(--accent-primary); border-radius: 8px; font-weight: 600; display: inline-block; }
+        .price-main { font-size: clamp(48px, 8vw, 72px); font-weight: 700; background: linear-gradient(90deg, #FF007A 0%, #A020F0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+        .price-timer { margin-top: 24px; padding: 12px; background: rgba(255, 0, 122, 0.08); color: #FF007A; border: 1px solid rgba(160,32,240,0.3); border-radius: 8px; font-weight: 600; display: inline-block; }
         
         /* FAQ Layout Reference */
         .faq-badge {
@@ -179,7 +179,7 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
-            <div style="font-weight: 900; font-size: 22px; letter-spacing: 2px;">DUNO<span class="text-accent-yellow">.</span></div>
+            <div style="font-weight: 900; font-size: 22px; letter-spacing: 2px;">DUNO<span class="highlight-gradient">.</span></div>
             <div class="nav-links">
                 <a href="#portfolio">Catálogo</a>
                 <a href="#depoimentos">Depoimentos</a>
@@ -328,11 +328,11 @@
     <section id="oferta">
         <div class="container reveal">
             <div class="pricing-box">
-                <span class="text-accent-yellow caption" style="font-weight: 700;">🔥 OFERTA POR TEMPO LIMITADO</span>
+                <span class="highlight-gradient" style="font-weight: 700; font-size: 13px;">🔥 OFERTA POR TEMPO LIMITADO</span>
                 <div style="margin: 20px 0;">
                     <span class="price-anchor">De R$ 497</span>
-                    <div class="price-main">R$ 197<span style="font-size: 20px;">/mês</span></div>
-                    <p class="caption" style="margin-top: 10px;">Equivale a apenas <span class="text-accent-yellow">R$ 6,57/dia</span></p>
+                    <div class="price-main">R$ 197<span style="font-size: 20px; background: linear-gradient(90deg, #FF007A 0%, #A020F0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">/mês</span></div>
+                    <p class="caption" style="margin-top: 10px;">Equivale a apenas <span class="highlight-gradient" style="font-weight: 700;">R$ 6,57/dia</span></p>
                 </div>
                 <ul style="list-style: none; text-align: left; margin: 30px 0; display: flex; flex-direction: column; gap: 12px;">
                     <li>✅ +40 Templates Premium</li>
